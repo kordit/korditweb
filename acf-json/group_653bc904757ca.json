@@ -1,0 +1,338 @@
+{
+    "key": "group_653bc904757ca",
+    "title": "Cennik",
+    "fields": [
+        {
+            "key": "field_653bc91a68b92",
+            "label": "Opis",
+            "name": "opis",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "desc",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": "",
+            "placeholder": "",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_653bc92668b93",
+            "label": "Repeater",
+            "name": "repeater",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "pagination": 0,
+            "library_type": 0,
+            "min": 0,
+            "max": 2,
+            "collapsed": "",
+            "button_label": "Dodaj wiersz",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_653bc93768b94",
+                    "label": "Grafika",
+                    "name": "grafika",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "preview_size": "medium",
+                    "parent_repeater": "field_653bc92668b93"
+                },
+                {
+                    "key": "field_653bc93e68b95",
+                    "label": "Tytuł",
+                    "name": "tytul",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_653bc92668b93"
+                },
+                {
+                    "key": "field_653bc94a68b96",
+                    "label": "Opis",
+                    "name": "opis",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "desc",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "rows": "",
+                    "placeholder": "",
+                    "new_lines": "",
+                    "parent_repeater": "field_653bc92668b93"
+                },
+                {
+                    "key": "field_653bc96268b97",
+                    "label": "Link",
+                    "name": "link",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "parent_repeater": "field_653bc92668b93"
+                }
+            ]
+        },
+        {
+            "key": "field_653bc97368b98",
+            "label": "Tabela",
+            "name": "tabela",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "pagination": 0,
+            "library_type": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Dodaj wiersz",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_653bc98068b99",
+                    "label": "Etykieta tabeli",
+                    "name": "etykieta_tabeli",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_653bc97368b98"
+                },
+                {
+                    "key": "field_653bc98768b9a",
+                    "label": "Pozycje",
+                    "name": "pozycje",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "table",
+                    "pagination": 0,
+                    "library_type": 0,
+                    "min": 0,
+                    "max": 0,
+                    "collapsed": "",
+                    "button_label": "Dodaj wiersz",
+                    "rows_per_page": 20,
+                    "sub_fields": [
+                        {
+                            "key": "field_653bc9b968b9d",
+                            "label": "Typ pól",
+                            "name": "typ_pol",
+                            "aria-label": "",
+                            "type": "button_group",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "1": "wartości",
+                                "2": "tekst"
+                            },
+                            "default_value": "",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "layout": "horizontal",
+                            "parent_repeater": "field_653bc98768b9a"
+                        },
+                        {
+                            "key": "field_653bc99a68b9b",
+                            "label": "Etykieta",
+                            "name": "etykieta",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_653bc9b968b9d",
+                                        "operator": "==",
+                                        "value": "1"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_653bc98768b9a"
+                        },
+                        {
+                            "key": "field_653bc9a268b9c",
+                            "label": "Wartość",
+                            "name": "wartosc",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_653bc9b968b9d",
+                                        "operator": "==",
+                                        "value": "1"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_653bc98768b9a"
+                        },
+                        {
+                            "key": "field_653bc9e668b9e",
+                            "label": "Dodatkowy opis",
+                            "name": "dodatkowy_opis",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_653bc9b968b9d",
+                                        "operator": "==",
+                                        "value": "2"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "rows": "",
+                            "placeholder": "",
+                            "new_lines": "br",
+                            "parent_repeater": "field_653bc98768b9a"
+                        }
+                    ],
+                    "parent_repeater": "field_653bc97368b98"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/cennik"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1698417238
+}

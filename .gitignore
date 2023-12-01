@@ -1,5 +1,3 @@
-acf-json/*
-!acf-json/.keep
 blocks/block-templates/*
 !blocks/block-templates/.keep
 cpt/cpt-templates/*
