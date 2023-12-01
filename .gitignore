@@ -1,0 +1,11 @@
+acf-json/*
+!acf-json/.keep
+blocks/block-templates/*
+!blocks/block-templates/.keep
+cpt/cpt-templates/*
+!cpt/cpt-templates/.keep
+patterns/*
+!patterns/.keep
+.DS_Store
+assets/fonts/*
+!assets/fonts/fonts.css

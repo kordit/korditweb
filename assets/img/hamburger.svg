@@ -1,0 +1,5 @@
+<svg class="hamburger" width="80" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<path class="line top" d="m30 33h40c3.7228 0 7.5 3.1265 7.5 8.5784s-2.727 8.4216-7.5 8.4216h-20"/>
+<path class="line middle" d="m30 50h40"/>
+<path class="line bottom" d="m70 67h-40s-7.5-0.80212-7.5-8.3657 7.5-8.6343 7.5-8.6343h20"/>
+</svg>
