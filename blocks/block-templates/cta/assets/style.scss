@@ -1,0 +1,22 @@
+body:not(.wp-core-ui),html:not(.wp-toolbar),.acf-block-preview { 
+	.cta {
+		.inner-wrapper {
+			padding: 48px;
+			background-image: url(/wp-content/uploads/2023/10/BANNER-1-e1697218937670.png);
+			background-size: cover;
+			border-radius: 6px;
+			box-shadow: 0px 8px 8px -4px rgba(16, 24, 40, 0.03), 0px 20px 24px -4px rgba(16, 24, 40, 0.08);
+			@media only screen and (max-width: 991px) {
+				padding: 30px;
+			}
+			.heading-1 {
+				font-size: 36px;
+				margin-bottom: 16px;
+				line-height: 150%;
+			}
+			.description {
+				margin-bottom: 32px;
+			}
+		}
+	}
+}

@@ -1,0 +1,17 @@
+body:not(.wp-core-ui),html:not(.wp-toolbar),.acf-block-preview { 
+	.header-after {
+		background: #FCFCFD;
+		padding-bottom: 64px;
+		padding-top: 48px; 
+		.header-after-inner {
+			text-align: center;
+			width: 100%; 
+			margin-bottom: 64px;
+			.description {
+				margin-top: 16px;
+			}
+			& + img {
+			}
+		} 
+	}  
+}  
