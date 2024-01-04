@@ -13,5 +13,5 @@
     ]);
     ?>
   <?php endif; ?>
-  <?= et_svg('wp-content/themes/ergotree/assets/img/hamburger.svg'); ?>
+  <?= et_svg('wp-content/themes/korditweb/assets/img/hamburger.svg'); ?>
 </div>

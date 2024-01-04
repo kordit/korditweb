@@ -29,17 +29,8 @@
     ?>
   <?php endif; ?>
   <header id="header">
-    <?php
-    if (get_field('select_header', 'option') == 'basic') {
-      include('templates/header/template.php');
-    } elseif (get_field('select_header', 'option') == 'cascade') {
-      include('templates/header-cascade/template.php');
-    }
-    ?>
+    <?php include('templates/header/template.php'); ?>
   </header>
-  <?php if (get_field('header_on')) {
-    include("templates/header-subpage/template.php");
-  } ?>
 
   <?php if (!is_front_page() && !is_single()): ?>
   <div class="section-title">

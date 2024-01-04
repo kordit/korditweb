@@ -71,7 +71,7 @@ function et_lottie($json, $x, $type)
 	if ($json) {
 		echo '<div id="json_image' . $x . '"></div>';
 		$container_lottie = '#json_image' . $x;
-?>
+		?>
 		<script type="text/javascript">
 			var logsEnabled = true
 
@@ -96,7 +96,7 @@ function et_lottie($json, $x, $type)
 				et_lottie(container_lottie, x_lottie, path_lottie, icon_lottie, type_lottie);
 			})
 		</script>
-<?php }
+	<?php }
 }
 
 function et_theme_pagination_query($post_query)
@@ -135,9 +135,7 @@ function et_svg($linksvg, $type = 0)
 				$svg_file_new = substr($svg_file, $position);
 				echo $svg_file_new;
 			}
-		} else {
-			echo "plik nie istnieje!";
-		}
+		} 
 	}
 }
 
@@ -167,9 +165,7 @@ function et_get_svg($linksvg, $type = 0)
 				$svg_file_new = substr($svg_file, $position);
 				return $svg_file_new;
 			}
-		} else {
-			return "plik nie istnieje!";
-		}
+		} 
 	}
 }
 
@@ -204,9 +200,7 @@ function et_image($acffield, $size = "full", $url = false, $class = '')
 		} elseif ($newstring == 'svg') {
 			$webimage = preg_replace('/https?\:\/\/[^\/]*\//', '', $webimage);
 			echo et_get_svg($webimage);
-		} else {
-			echo "Nieprawidłowy format pliku";
-		}
+		} 
 	}
 }
 
@@ -239,8 +233,6 @@ function et_get_image($acffield, $size = "full", $url = false)
 			return wp_get_attachment_image($typeacf, $size);
 		} elseif ($newstring == 'svg') {
 			return et_get_svg($webimage);
-		} else {
-			return "Nieprawidłowy format pliku";
 		}
 	}
 }
@@ -249,7 +241,9 @@ function et_the_logo($width = "350px", $height = "100px", $class = "header")
 {
 	$custom_logo_id = get_theme_mod('custom_logo');
 	$logo = wp_get_attachment_image_src($custom_logo_id, 'small-logo');
-	$logo = $logo[0];
+	if (isset($logo[0])) {
+		$logo = $logo[0];
+	}
 	if (has_custom_logo()) {
 		$pieces = explode("/", $logo);
 		$pathend = end($pieces);
@@ -261,7 +255,7 @@ function et_the_logo($width = "350px", $height = "100px", $class = "header")
 			et_svg($logo);
 			echo '
 			<style>'
-				. $class . ' .logo svg {
+			. $class . ' .logo svg {
 				width: ' . $width . ';
 				height: auto;
 			}
@@ -282,7 +276,7 @@ function et_form($id_form)
 	return do_shortcode($shortcut);
 }
 
-function et_start_section($et_blockname, $srctemplate, $vars = [1], $et_id = '', $bg = '', $hex = '', $sectionid, $container = '')
+function et_start_section($et_blockname, $srctemplate, $vars = [1], $et_id = '', $bg = '', $hex = '', $sectionid = '', $container = '')
 {
 	foreach ($vars as $var => $val) {
 		$$var = $val;
@@ -311,7 +305,7 @@ function et_start_section($et_blockname, $srctemplate, $vars = [1], $et_id = '',
 	echo '<section class="' . $et_blockname . '__' . $sectionid . ' ' . $et_blockname . $additional_class . '" ' . $et_id . '>';
 	if ($bg || $hex) {
 		echo '<div class="background-wrapper" ' . $bg . '><div ' . $hex . '></div>' .
-			'</div>';
+		'</div>';
 	}
 	if (!empty($container)) {
 		echo '<div class="' . $container . '">';
