@@ -25,3 +25,30 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+document.addEventListener('DOMContentLoaded', function() {
+  document.body.style.opacity = 0;
+  window.setTimeout(function() {
+    document.body.style.opacity = 1;
+  }, 125);
+  function handleLinkClick(e) {
+    var destination = this.href;
+    var isInternalLink = destination.startsWith(window.location.origin) || destination.startsWith('/');
+    var isDownloadLink = this.hasAttribute('download');
+    var isEmptyLink = destination.endsWith('#');
+    if (!isInternalLink || isDownloadLink || isEmptyLink) {
+      return;
+    }
+
+    e.preventDefault();
+    document.body.classList.add('fade-out');
+    // setTimeout(function() {
+    window.location.href = destination;
+    // }, 125);
+  }
+
+  var links = document.querySelectorAll('a');
+  links.forEach(function(link) {
+    link.addEventListener('click', handleLinkClick);
+  });
+});
+

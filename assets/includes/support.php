@@ -264,6 +264,8 @@ add_image_size('medium_medium', 512, 512);
 add_image_size('medium_large', 768, 768);
 add_image_size('medium_full', 1536, 1536);
 add_image_size('full', 2560, 2560);
+add_image_size('slider-size', 1920, 1080, true);
+
 
 register_nav_menu('header', 'Header menu');
 register_nav_menu('footer', 'Footer menu');
