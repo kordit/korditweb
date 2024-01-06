@@ -1,13 +1,1 @@
-body:not(.wp-core-ui) .header-after, html:not(.wp-toolbar) .header-after, .acf-block-preview .header-after {
-  background: #FCFCFD;
-  padding-bottom: 64px;
-  padding-top: 48px;
-}
-body:not(.wp-core-ui) .header-after .header-after-inner, html:not(.wp-toolbar) .header-after .header-after-inner, .acf-block-preview .header-after .header-after-inner {
-  text-align: center;
-  width: 100%;
-  margin-bottom: 64px;
-}
-body:not(.wp-core-ui) .header-after .header-after-inner .description, html:not(.wp-toolbar) .header-after .header-after-inner .description, .acf-block-preview .header-after .header-after-inner .description {
-  margin-top: 16px;
-}/*# sourceMappingURL=style.css.map */
+body:not(.wp-core-ui) .header-after,html:not(.wp-toolbar) .header-after,.acf-block-preview .header-after{background:#fcfcfd;padding-bottom:64px;padding-top:48px}body:not(.wp-core-ui) .header-after .header-after-inner,html:not(.wp-toolbar) .header-after .header-after-inner,.acf-block-preview .header-after .header-after-inner{text-align:center;width:100%;margin-bottom:64px}body:not(.wp-core-ui) .header-after .header-after-inner .description,html:not(.wp-toolbar) .header-after .header-after-inner .description,.acf-block-preview .header-after .header-after-inner .description{margin-top:16px}/*# sourceMappingURL=style.css.map */
