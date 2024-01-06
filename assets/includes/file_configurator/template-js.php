@@ -1,0 +1,22 @@
+<?php
+$slugrp = str_replace('-', '_', $slug);
+$slugrpCap = ucfirst($slugrp);
+$all_code_js .= '/* eslint-disable no-unused-vars */' . PHP_EOL;
+$all_code_js .= 'function init__' . $slugrpCap . '(element = document) {' . PHP_EOL;
+$all_code_js .= '' . PHP_EOL;
+$all_code_js .= '};' . PHP_EOL;
+$all_code_js .= '' . PHP_EOL;
+$all_code_js .= 'document.addEventListener("DOMContentLoaded", () => {' . PHP_EOL;
+$all_code_js .= 'init__' . $slugrpCap . '();' . PHP_EOL;
+$all_code_js .= '});' . PHP_EOL;
+$all_code_js .= '' . PHP_EOL;
+$all_code_js .= '/* -- Admin JS START -- */' . PHP_EOL;
+$all_code_js .= 'if(window.acf){' . PHP_EOL;
+$all_code_js .= 'window.acf.addAction("render_block_preview/type=' . $slug . '", (el) => {' . PHP_EOL;
+$all_code_js .= 'if(!!el[0].querySelector(".' . $slug . '") && !el[0].querySelector(".' . $slug . '").classList.contains("block-js-added")){' . PHP_EOL;
+$all_code_js .= 'init__' . $slugrpCap . '(el[0]);' . PHP_EOL;
+$all_code_js .= 'el[0].querySelector(".' . $slug . '").classList.add("block-js-added");' . PHP_EOL;
+$all_code_js .= '}' . PHP_EOL;
+$all_code_js .= '});' . PHP_EOL;
+$all_code_js .= '}' . PHP_EOL;
+$all_code_js .= '/* -- Admin JS END -- */' . PHP_EOL;

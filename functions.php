@@ -22,6 +22,13 @@ if (is_admin()) {
 
 get_template_part('/assets/includes/optimize');
 
+function my_enqueue_scripts() {
+  wp_enqueue_script('et_my-custom-acf-script', get_template_directory_uri() . '/js/my-custom-acf-script.js', array('jquery'), null, true );
+
+  wp_localize_script('et2_my-custom-acf-script', 'myAjax', array('ajaxurl' => admin_url('admin-ajax.php')));
+}
+add_action('wp_enqueue_scripts', 'my_enqueue_scripts');
+
 function theme_enqueue_scripts()
 {
   if (!is_admin()) {
@@ -52,7 +59,7 @@ if (is_admin()) {
       echo '</style>';
     }
     add_action('admin_head', 'my_colors_and_fonts');
-
+    wp_enqueue_style('global', get_template_directory_uri() . '/assets/css/global.css');
     wp_enqueue_style('style', get_template_directory_uri() . '/style.css');
     wp_enqueue_style('theme-style', get_template_directory_uri() . '/theme-style.css');
   });

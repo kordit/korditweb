@@ -1,13 +1,13 @@
 {
     "key": "group_6537d0f9c9ff0",
-    "title": "Settings",
+    "title": "Ustawienia motywu",
     "fields": [
         {
-            "key": "field_6537d0fab5c6c",
-            "label": "Tekst po lewej",
-            "name": "tekst_po_lewej",
+            "key": "field_6596af6362413",
+            "label": "Dane kontaktowe",
+            "name": "",
             "aria-label": "",
-            "type": "wysiwyg",
+            "type": "tab",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -16,51 +16,97 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "tabs": "all",
-            "toolbar": "full",
-            "media_upload": 1,
-            "delay": 0
+            "placement": "top",
+            "endpoint": 0
         },
         {
-            "key": "field_6537d110b5c6d",
-            "label": "Tekst na środku",
-            "name": "tekst_na_srodku",
+            "key": "field_6596af7362414",
+            "label": "Telefon",
+            "name": "telefon",
             "aria-label": "",
-            "type": "wysiwyg",
+            "type": "link",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "33",
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "tabs": "all",
-            "toolbar": "full",
-            "media_upload": 1,
-            "delay": 0
+            "return_format": "array"
         },
         {
-            "key": "field_6537d11ab5c6e",
-            "label": "Tekst po prawej",
-            "name": "tekst_po_prawej",
+            "key": "field_6596af8762415",
+            "label": "Mail",
+            "name": "mail",
             "aria-label": "",
-            "type": "wysiwyg",
+            "type": "email",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "33",
                 "class": "",
                 "id": ""
             },
             "default_value": "",
-            "tabs": "all",
-            "toolbar": "full",
-            "media_upload": 1,
-            "delay": 0
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_6596af8f62416",
+            "label": "Adres",
+            "name": "adres",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_6596b1a13b7f4",
+            "label": "Url Facebook",
+            "name": "url_facebook",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_6596b1b43b7f5",
+            "label": "Url Instagram",
+            "name": "url_instagram",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
         }
     ],
     "location": [
@@ -81,5 +127,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1698156836
+    "modified": 1704375114
 }

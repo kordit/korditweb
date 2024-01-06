@@ -1,1 +1,109 @@
-*,*::before,*::after{box-sizing:border-box}body:not(.wp-core-ui) section,html:not(.wp-toolbar) section,.acf-block-preview section{position:relative;isolation:isolate}body:not(.wp-core-ui) .background-wrapper,html:not(.wp-toolbar) .background-wrapper,.acf-block-preview .background-wrapper{background-size:cover;position:absolute;top:0;left:0;width:100%;height:100%;z-index:-2}body:not(.wp-core-ui) .background-wrapper div,html:not(.wp-toolbar) .background-wrapper div,.acf-block-preview .background-wrapper div{position:absolute;top:0;left:0;width:100%;height:100%;z-index:-1}html :where(.wp-block){max-width:min(1366px,95%)}
+/* THEME CORE STYLES */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body:not(.wp-core-ui) section,
+html:not(.wp-toolbar) section,
+.acf-block-preview section {
+  position: relative;
+  isolation: isolate;
+}
+body:not(.wp-core-ui) section > .background-wrapper img,
+html:not(.wp-toolbar) section > .background-wrapper img,
+.acf-block-preview section > .background-wrapper img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+body:not(.wp-core-ui) section > .video-wrapper,
+html:not(.wp-toolbar) section > .video-wrapper,
+.acf-block-preview section > .video-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+body:not(.wp-core-ui) section > .video-wrapper video,
+html:not(.wp-toolbar) section > .video-wrapper video,
+.acf-block-preview section > .video-wrapper video {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  position: relative;
+}
+body:not(.wp-core-ui) .background-wrapper,
+body:not(.wp-core-ui) .video-wrapper,
+html:not(.wp-toolbar) .background-wrapper,
+html:not(.wp-toolbar) .video-wrapper,
+.acf-block-preview .background-wrapper,
+.acf-block-preview .video-wrapper {
+  z-index: -1;
+}
+body:not(.wp-core-ui) .background-wrapper.mix-blend-video_image video, body:not(.wp-core-ui) .background-wrapper.mix-blend-video_image img,
+body:not(.wp-core-ui) .video-wrapper.mix-blend-video_image video,
+body:not(.wp-core-ui) .video-wrapper.mix-blend-video_image img,
+html:not(.wp-toolbar) .background-wrapper.mix-blend-video_image video,
+html:not(.wp-toolbar) .background-wrapper.mix-blend-video_image img,
+html:not(.wp-toolbar) .video-wrapper.mix-blend-video_image video,
+html:not(.wp-toolbar) .video-wrapper.mix-blend-video_image img,
+.acf-block-preview .background-wrapper.mix-blend-video_image video,
+.acf-block-preview .background-wrapper.mix-blend-video_image img,
+.acf-block-preview .video-wrapper.mix-blend-video_image video,
+.acf-block-preview .video-wrapper.mix-blend-video_image img {
+  z-index: -2;
+}
+body:not(.wp-core-ui) .background-wrapper.mix-blend-video_image div,
+body:not(.wp-core-ui) .video-wrapper.mix-blend-video_image div,
+html:not(.wp-toolbar) .background-wrapper.mix-blend-video_image div,
+html:not(.wp-toolbar) .video-wrapper.mix-blend-video_image div,
+.acf-block-preview .background-wrapper.mix-blend-video_image div,
+.acf-block-preview .video-wrapper.mix-blend-video_image div {
+  z-index: -3;
+}
+body:not(.wp-core-ui) .background-wrapper.mix-blend-overlay video, body:not(.wp-core-ui) .background-wrapper.mix-blend-overlay img,
+body:not(.wp-core-ui) .video-wrapper.mix-blend-overlay video,
+body:not(.wp-core-ui) .video-wrapper.mix-blend-overlay img,
+html:not(.wp-toolbar) .background-wrapper.mix-blend-overlay video,
+html:not(.wp-toolbar) .background-wrapper.mix-blend-overlay img,
+html:not(.wp-toolbar) .video-wrapper.mix-blend-overlay video,
+html:not(.wp-toolbar) .video-wrapper.mix-blend-overlay img,
+.acf-block-preview .background-wrapper.mix-blend-overlay video,
+.acf-block-preview .background-wrapper.mix-blend-overlay img,
+.acf-block-preview .video-wrapper.mix-blend-overlay video,
+.acf-block-preview .video-wrapper.mix-blend-overlay img {
+  z-index: -3;
+}
+body:not(.wp-core-ui) .background-wrapper.mix-blend-overlay div,
+body:not(.wp-core-ui) .video-wrapper.mix-blend-overlay div,
+html:not(.wp-toolbar) .background-wrapper.mix-blend-overlay div,
+html:not(.wp-toolbar) .video-wrapper.mix-blend-overlay div,
+.acf-block-preview .background-wrapper.mix-blend-overlay div,
+.acf-block-preview .video-wrapper.mix-blend-overlay div {
+  z-index: -2;
+}
+body:not(.wp-core-ui) .background-wrapper div,
+body:not(.wp-core-ui) .video-wrapper div,
+html:not(.wp-toolbar) .background-wrapper div,
+html:not(.wp-toolbar) .video-wrapper div,
+.acf-block-preview .background-wrapper div,
+.acf-block-preview .video-wrapper div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ADMIN PANEL STYLES */
+html :where(.wp-block) {
+  max-width: min(1366px, 95%);
+}/*# sourceMappingURL=global.css.map */

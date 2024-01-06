@@ -226,21 +226,21 @@ function acf_addons_library($valid, $value, $field, $input)
 	return $valid;
 }
 
-add_action('acf/render_field_settings/type=message', 'my_message_render_field_settings');
+// add_action('acf/render_field_settings/type=message', 'my_message_render_field_settings');
 
-function my_message_render_field_settings($field)
-{
-	acf_render_field_setting($field, array(
-		'label'     => __('Wygeneruj kod dla'),
-		'instructions'  => __('Kod zostanie automatycznie wygenerowany'),
-		'name'      => 'type_cpt',
-		'type' => 'select',
-		'choices' => et_get_cpt(),
-		'allow_null' => 1,
-		'multiple' => 0,
-		'ui' => 0,
-		'return_format' => 'array',
-		'ajax' => 0,
-		'placeholder' => '',
-	));
-}
+// function my_message_render_field_settings($field)
+// {
+// 	acf_render_field_setting($field, array(
+// 		'label'     => __('Wygeneruj kod dla'),
+// 		'instructions'  => __('Kod zostanie automatycznie wygenerowany'),
+// 		'name'      => 'type_cpt',
+// 		'type' => 'select',
+// 		'choices' => et_get_cpt(),
+// 		'allow_null' => 1,
+// 		'multiple' => 0,
+// 		'ui' => 0,
+// 		'return_format' => 'array',
+// 		'ajax' => 0,
+// 		'placeholder' => '',
+// 	));
+// }

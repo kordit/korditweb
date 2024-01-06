@@ -1,12 +1,11 @@
+// body {
+//   opacity: 0;
+//   transition: opacity 0.125s ease-in-out;
+// }
 
-body {
-  opacity: 0;
-  transition: opacity 0.125s ease-in-out;
-}
-
-body.fade-out {
-  opacity: 0 !important;
-}
+// body.fade-out {
+//   opacity: 0 !important;
+// }
 
 body:not(.wp-core-ui),
 html:not(.wp-toolbar),
@@ -17,31 +16,35 @@ html:not(.wp-toolbar),
   color: #000;
   overflow-x: hidden;
   scroll-behavior: smooth;
-  margin:0;
+  margin: 0;
 
   h1,
   h2,
   h3,
   h4,
   h5,
-  h6, 
-  p {  
+  h6,
+  p {
     margin: 0;
   }
+
   * {
     font-family: var(--ffont);
   }
+
   .hero-title {
     font-size: 60px;
     font-weight: 700;
     line-height: 72px;
     letter-spacing: -1.2px;
     margin-bottom: 20px;
+
     @media only screen and (max-width: 576px) {
       line-height: 55px;
-      font-size: 40px; 
+      font-size: 40px;
     }
   }
+
   .section-title {
     text-align: center;
     font-family: var(--sfont);
@@ -51,35 +54,40 @@ html:not(.wp-toolbar),
     line-height: 60px;
     letter-spacing: -0.96px;
     color: var(--gray-700, #344054);
+
     @media only screen and (max-width: 576px) {
       font-size: 32px;
       line-height: 150%;
     }
   }
+
   .heading-1 {
     font-family: var(--sfont);
     font-size: 24px;
-    font-style: normal; 
+    font-style: normal;
     font-weight: 700;
     line-height: 32px;
   }
+
   .heading-2 {
     font-family: var(--sfont);
     font-size: 36px;
-    font-style: normal; 
+    font-style: normal;
     line-height: 32px;
     font-weight: 700;
     line-height: 32px;
   }
+
   .heading-3 {
     font-family: var(--sfont);
     font-size: 36px;
-    font-style: normal; 
+    font-style: normal;
     line-height: 32px;
     font-weight: 700;
     line-height: 32px;
   }
-  .desc { 
+
+  .desc {
     font-family: var(--sfont);
     font-family: Poppins;
     font-size: 14px;
@@ -88,11 +96,14 @@ html:not(.wp-toolbar),
     line-height: 150%;
     margin-bottom: 12px;
   }
+
   .white {
     color: #fff;
   }
+
   .splide {
-    position: relative;    
+    position: relative;
+
     ul.splide__pagination {
       position: absolute;
       bottom: 40px;
@@ -100,42 +111,47 @@ html:not(.wp-toolbar),
       display: flex;
       gap: 16px;
       padding: 0px;
+
       li {
         button {
           background-color: var(--c1);
           width: 16px;
-          height: 16px; 
+          height: 16px;
           display: block;
-          border:none;
-          border-radius: 100%; 
+          border: none;
+          border-radius: 100%;
         }
       }
     }
+
     .splide__arrows {
       button {
-        transition-duration:.5s;
+        transition-duration: .5s;
         background-color: transparent;
-        border:none;
+        border: none;
         padding: 0px;
         position: absolute;
         top: 50%;
         z-index: 10;
 
         &.splide__arrow--prev {
-          transform:translate(0%, -50%) rotate(180deg);
-          left:40px;
+          transform: translate(0%, -50%) rotate(180deg);
+          left: 40px;
         }
+
         &.splide__arrow--next {
           transform: translate(0%, -50%);
           right: 40px;
         }
       }
+
       svg {
-        width: 50px; 
+        width: 50px;
         height: 50px;
-      } 
+      }
     }
   }
+
   .btn-theme {
     border-radius: 32px;
     background-color: var(--c1);
@@ -144,11 +160,13 @@ html:not(.wp-toolbar),
     color: #F2F4F7;
     text-decoration: none;
     font-weight: 700;
+
     &.white {
       background-color: #fff;
       color: var(--c2);
+
       @media only screen and (max-width: 991px) {
-        border:solid 1px #ccc;
+        border: solid 1px #ccc;
       }
     }
   }
@@ -164,7 +182,8 @@ html:not(.wp-toolbar),
     width: min(90%, 1280px);
     margin: auto;
   }
+
   footer {
-    min-height: 5px;  
+    min-height: 5px;
   }
 }

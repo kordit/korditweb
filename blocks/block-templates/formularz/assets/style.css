@@ -1,1 +1,166 @@
-body:not(.wp-core-ui) .formularz .et-container,html:not(.wp-toolbar) .formularz .et-container,.acf-block-preview .formularz .et-container{position:relative}body:not(.wp-core-ui) .formularz .et-container .wrapper,html:not(.wp-toolbar) .formularz .et-container .wrapper,.acf-block-preview .formularz .et-container .wrapper{overflow:hidden;width:600px;max-width:100%;background:#fcfcfd;padding:32px;border-radius:12px;padding-bottom:0px;margin:auto;margin-bottom:32px}body:not(.wp-core-ui) .formularz .et-container .wrapper .heading-1,html:not(.wp-toolbar) .formularz .et-container .wrapper .heading-1,.acf-block-preview .formularz .et-container .wrapper .heading-1{margin-bottom:8px}body:not(.wp-core-ui) .formularz .et-container .wrapper .desc,html:not(.wp-toolbar) .formularz .et-container .wrapper .desc,.acf-block-preview .formularz .et-container .wrapper .desc{margin-bottom:16px}body:not(.wp-core-ui) .formularz .et-container .wrapper input:not([type=submit]),body:not(.wp-core-ui) .formularz .et-container .wrapper textarea,html:not(.wp-toolbar) .formularz .et-container .wrapper input:not([type=submit]),html:not(.wp-toolbar) .formularz .et-container .wrapper textarea,.acf-block-preview .formularz .et-container .wrapper input:not([type=submit]),.acf-block-preview .formularz .et-container .wrapper textarea{border:1px dashed var(--c2);padding:12px 16px;border-radius:4px;width:100%;background:rgba(0,0,0,0)}body:not(.wp-core-ui) .formularz .et-container .wrapper .background,html:not(.wp-toolbar) .formularz .et-container .wrapper .background,.acf-block-preview .formularz .et-container .wrapper .background{margin-top:32px;padding-top:32px;padding-bottom:32px;position:relative;width:100%;color:#fff}body:not(.wp-core-ui) .formularz .et-container .wrapper .background>*,html:not(.wp-toolbar) .formularz .et-container .wrapper .background>*,.acf-block-preview .formularz .et-container .wrapper .background>*{position:relative;z-index:2;width:100%;display:block}body:not(.wp-core-ui) .formularz .et-container .wrapper .background:after,html:not(.wp-toolbar) .formularz .et-container .wrapper .background:after,.acf-block-preview .formularz .et-container .wrapper .background:after{content:" ";background:#667085;position:absolute;top:0;left:-35px;width:calc(100% + 70px);height:100%;z-index:0;border-radius:0px 0px 12px 12px}body:not(.wp-core-ui) .formularz .et-container .wrapper .background label,html:not(.wp-toolbar) .formularz .et-container .wrapper .background label,.acf-block-preview .formularz .et-container .wrapper .background label{color:#fff}body:not(.wp-core-ui) .formularz .et-container .wrapper *,html:not(.wp-toolbar) .formularz .et-container .wrapper *,.acf-block-preview .formularz .et-container .wrapper *{outline:none}body:not(.wp-core-ui) .formularz .et-container .wrapper textarea,html:not(.wp-toolbar) .formularz .et-container .wrapper textarea,.acf-block-preview .formularz .et-container .wrapper textarea{border:none;background:rgba(0,0,0,0);border-bottom:solid 1px var(--c1);padding-bottom:10px}body:not(.wp-core-ui) .formularz .et-container .wrapper label,html:not(.wp-toolbar) .formularz .et-container .wrapper label,.acf-block-preview .formularz .et-container .wrapper label{display:flex;width:100%;flex-direction:column;color:var(--c2);font-family:Poppins;font-size:12px;font-style:normal;font-weight:400;line-height:12px;background:rgba(0,0,0,0)}body:not(.wp-core-ui) .formularz .et-container .wrapper label span,html:not(.wp-toolbar) .formularz .et-container .wrapper label span,.acf-block-preview .formularz .et-container .wrapper label span{margin-top:8px;width:100%}body:not(.wp-core-ui) .formularz .et-container .wrapper .wpcf7-acceptance .wpcf7-list-item,html:not(.wp-toolbar) .formularz .et-container .wrapper .wpcf7-acceptance .wpcf7-list-item,.acf-block-preview .formularz .et-container .wrapper .wpcf7-acceptance .wpcf7-list-item{margin:0}body:not(.wp-core-ui) .formularz .et-container .wrapper .wpcf7-acceptance .wpcf7-list-item label,html:not(.wp-toolbar) .formularz .et-container .wrapper .wpcf7-acceptance .wpcf7-list-item label,.acf-block-preview .formularz .et-container .wrapper .wpcf7-acceptance .wpcf7-list-item label{display:flex;flex-direction:row;font-size:12px;font-style:normal;font-weight:400;line-height:16px;align-items:center;gap:8px;margin-top:10px;margin-bottom:24px;color:#fff}body:not(.wp-core-ui) .formularz .et-container .wrapper .wpcf7-acceptance .wpcf7-list-item label input,html:not(.wp-toolbar) .formularz .et-container .wrapper .wpcf7-acceptance .wpcf7-list-item label input,.acf-block-preview .formularz .et-container .wrapper .wpcf7-acceptance .wpcf7-list-item label input{width:16px;height:16px;appearance:none;border:solid 1px #fff;padding:0px;border-radius:0px;background:rgba(0,0,0,0);transition-duration:.5s}body:not(.wp-core-ui) .formularz .et-container .wrapper .wpcf7-acceptance .wpcf7-list-item label input:checked,html:not(.wp-toolbar) .formularz .et-container .wrapper .wpcf7-acceptance .wpcf7-list-item label input:checked,.acf-block-preview .formularz .et-container .wrapper .wpcf7-acceptance .wpcf7-list-item label input:checked{background:#fff}body:not(.wp-core-ui) .formularz .et-container .wrapper .wpcf7-acceptance .wpcf7-list-item label .wpcf7-list-item-label,html:not(.wp-toolbar) .formularz .et-container .wrapper .wpcf7-acceptance .wpcf7-list-item label .wpcf7-list-item-label,.acf-block-preview .formularz .et-container .wrapper .wpcf7-acceptance .wpcf7-list-item label .wpcf7-list-item-label{margin-top:0}body:not(.wp-core-ui) .formularz .et-container .wrapper input[type=submit],html:not(.wp-toolbar) .formularz .et-container .wrapper input[type=submit],.acf-block-preview .formularz .et-container .wrapper input[type=submit]{padding:16px;border:none;border-radius:32px;background:var(--c1);color:var(--gray-50, #F9FAFB);text-align:center;font-family:Poppins;font-size:20px;font-style:normal;font-weight:700;line-height:12px;letter-spacing:-0.4px;text-transform:uppercase}body:not(.wp-core-ui) .formularz .et-container .wrapper label~label,html:not(.wp-toolbar) .formularz .et-container .wrapper label~label,.acf-block-preview .formularz .et-container .wrapper label~label{margin-top:24px}body:not(.wp-core-ui) .formularz .et-container .wrapper form,html:not(.wp-toolbar) .formularz .et-container .wrapper form,.acf-block-preview .formularz .et-container .wrapper form{display:flex;flex-wrap:wrap;justify-content:space-between}body:not(.wp-core-ui) .formularz .et-container .wrapper form>*:nth-child(4),body:not(.wp-core-ui) .formularz .et-container .wrapper form>*:nth-child(5),html:not(.wp-toolbar) .formularz .et-container .wrapper form>*:nth-child(4),html:not(.wp-toolbar) .formularz .et-container .wrapper form>*:nth-child(5),.acf-block-preview .formularz .et-container .wrapper form>*:nth-child(4),.acf-block-preview .formularz .et-container .wrapper form>*:nth-child(5){width:calc(50% - 8px)}body:not(.wp-core-ui) .formularz .et-container .wrapper .attach-file,html:not(.wp-toolbar) .formularz .et-container .wrapper .attach-file,.acf-block-preview .formularz .et-container .wrapper .attach-file{color:#344054;padding:5px 13px;background:#fff;border-radius:32px;font-family:Poppins;font-size:10px;font-style:normal;font-weight:400;line-height:12px;text-transform:uppercase;display:inline-block;margin:16px 0px;cursor:pointer}body:not(.wp-core-ui) .formularz .et-container iframe,html:not(.wp-toolbar) .formularz .et-container iframe,.acf-block-preview .formularz .et-container iframe{margin-bottom:80px;box-shadow:32px 32px 64px 0px rgba(52,64,84,.08)}body.page-id-64 header+.section-title{display:none}/*# sourceMappingURL=style.css.map */
+body:not(.wp-core-ui) .formularz .et-container, html:not(.wp-toolbar) .formularz .et-container, .acf-block-preview .formularz .et-container {
+  position: relative;
+}
+body:not(.wp-core-ui) .formularz .et-container .wrapper, html:not(.wp-toolbar) .formularz .et-container .wrapper, .acf-block-preview .formularz .et-container .wrapper {
+  overflow: hidden;
+  width: 600px;
+  max-width: 100%;
+  background: #FCFCFD;
+  padding: 32px;
+  border-radius: 12px;
+  padding-bottom: 0px;
+  margin: auto;
+  margin-bottom: 32px;
+}
+body:not(.wp-core-ui) .formularz .et-container .wrapper .heading-1, html:not(.wp-toolbar) .formularz .et-container .wrapper .heading-1, .acf-block-preview .formularz .et-container .wrapper .heading-1 {
+  margin-bottom: 8px;
+}
+body:not(.wp-core-ui) .formularz .et-container .wrapper .desc, html:not(.wp-toolbar) .formularz .et-container .wrapper .desc, .acf-block-preview .formularz .et-container .wrapper .desc {
+  margin-bottom: 16px;
+}
+body:not(.wp-core-ui) .formularz .et-container .wrapper input:not([type=submit]),
+body:not(.wp-core-ui) .formularz .et-container .wrapper textarea, html:not(.wp-toolbar) .formularz .et-container .wrapper input:not([type=submit]),
+html:not(.wp-toolbar) .formularz .et-container .wrapper textarea, .acf-block-preview .formularz .et-container .wrapper input:not([type=submit]),
+.acf-block-preview .formularz .et-container .wrapper textarea {
+  border: 1px dashed var(--c2);
+  padding: 12px 16px;
+  border-radius: 4px;
+  width: 100%;
+  background: transparent;
+}
+body:not(.wp-core-ui) .formularz .et-container .wrapper .background, html:not(.wp-toolbar) .formularz .et-container .wrapper .background, .acf-block-preview .formularz .et-container .wrapper .background {
+  margin-top: 32px;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  position: relative;
+  width: 100%;
+  color: #fff;
+}
+body:not(.wp-core-ui) .formularz .et-container .wrapper .background > *, html:not(.wp-toolbar) .formularz .et-container .wrapper .background > *, .acf-block-preview .formularz .et-container .wrapper .background > * {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: block;
+}
+body:not(.wp-core-ui) .formularz .et-container .wrapper .background:after, html:not(.wp-toolbar) .formularz .et-container .wrapper .background:after, .acf-block-preview .formularz .et-container .wrapper .background:after {
+  content: " ";
+  background: #667085;
+  position: absolute;
+  top: 0;
+  left: -35px;
+  width: calc(100% + 70px);
+  height: 100%;
+  z-index: 0;
+  border-radius: 0px 0px 12px 12px;
+}
+body:not(.wp-core-ui) .formularz .et-container .wrapper .background label, html:not(.wp-toolbar) .formularz .et-container .wrapper .background label, .acf-block-preview .formularz .et-container .wrapper .background label {
+  color: #fff;
+}
+body:not(.wp-core-ui) .formularz .et-container .wrapper *, html:not(.wp-toolbar) .formularz .et-container .wrapper *, .acf-block-preview .formularz .et-container .wrapper * {
+  outline: none;
+}
+body:not(.wp-core-ui) .formularz .et-container .wrapper textarea, html:not(.wp-toolbar) .formularz .et-container .wrapper textarea, .acf-block-preview .formularz .et-container .wrapper textarea {
+  border: none;
+  background: transparent;
+  border-bottom: solid 1px var(--c1);
+  padding-bottom: 10px;
+}
+body:not(.wp-core-ui) .formularz .et-container .wrapper label, html:not(.wp-toolbar) .formularz .et-container .wrapper label, .acf-block-preview .formularz .et-container .wrapper label {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  color: var(--c2);
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 12px;
+  background: transparent;
+}
+body:not(.wp-core-ui) .formularz .et-container .wrapper label span, html:not(.wp-toolbar) .formularz .et-container .wrapper label span, .acf-block-preview .formularz .et-container .wrapper label span {
+  margin-top: 8px;
+  width: 100%;
+}
+body:not(.wp-core-ui) .formularz .et-container .wrapper .wpcf7-acceptance .wpcf7-list-item, html:not(.wp-toolbar) .formularz .et-container .wrapper .wpcf7-acceptance .wpcf7-list-item, .acf-block-preview .formularz .et-container .wrapper .wpcf7-acceptance .wpcf7-list-item {
+  margin: 0;
+}
+body:not(.wp-core-ui) .formularz .et-container .wrapper .wpcf7-acceptance .wpcf7-list-item label, html:not(.wp-toolbar) .formularz .et-container .wrapper .wpcf7-acceptance .wpcf7-list-item label, .acf-block-preview .formularz .et-container .wrapper .wpcf7-acceptance .wpcf7-list-item label {
+  display: flex;
+  flex-direction: row;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  margin-bottom: 24px;
+  color: #fff;
+}
+body:not(.wp-core-ui) .formularz .et-container .wrapper .wpcf7-acceptance .wpcf7-list-item label input, html:not(.wp-toolbar) .formularz .et-container .wrapper .wpcf7-acceptance .wpcf7-list-item label input, .acf-block-preview .formularz .et-container .wrapper .wpcf7-acceptance .wpcf7-list-item label input {
+  width: 16px;
+  height: 16px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: solid 1px #fff;
+  padding: 0px;
+  border-radius: 0px;
+  background: transparent;
+  transition-duration: 0.5s;
+}
+body:not(.wp-core-ui) .formularz .et-container .wrapper .wpcf7-acceptance .wpcf7-list-item label input:checked, html:not(.wp-toolbar) .formularz .et-container .wrapper .wpcf7-acceptance .wpcf7-list-item label input:checked, .acf-block-preview .formularz .et-container .wrapper .wpcf7-acceptance .wpcf7-list-item label input:checked {
+  background: #fff;
+}
+body:not(.wp-core-ui) .formularz .et-container .wrapper .wpcf7-acceptance .wpcf7-list-item label .wpcf7-list-item-label, html:not(.wp-toolbar) .formularz .et-container .wrapper .wpcf7-acceptance .wpcf7-list-item label .wpcf7-list-item-label, .acf-block-preview .formularz .et-container .wrapper .wpcf7-acceptance .wpcf7-list-item label .wpcf7-list-item-label {
+  margin-top: 0;
+}
+body:not(.wp-core-ui) .formularz .et-container .wrapper input[type=submit], html:not(.wp-toolbar) .formularz .et-container .wrapper input[type=submit], .acf-block-preview .formularz .et-container .wrapper input[type=submit] {
+  padding: 16px;
+  border: none;
+  border-radius: 32px;
+  background: var(--c1);
+  color: var(--gray-50, #F9FAFB);
+  text-align: center;
+  font-family: Poppins;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 12px;
+  letter-spacing: -0.4px;
+  text-transform: uppercase;
+}
+body:not(.wp-core-ui) .formularz .et-container .wrapper label ~ label, html:not(.wp-toolbar) .formularz .et-container .wrapper label ~ label, .acf-block-preview .formularz .et-container .wrapper label ~ label {
+  margin-top: 24px;
+}
+body:not(.wp-core-ui) .formularz .et-container .wrapper form, html:not(.wp-toolbar) .formularz .et-container .wrapper form, .acf-block-preview .formularz .et-container .wrapper form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+body:not(.wp-core-ui) .formularz .et-container .wrapper form > *:nth-child(4), body:not(.wp-core-ui) .formularz .et-container .wrapper form > *:nth-child(5), html:not(.wp-toolbar) .formularz .et-container .wrapper form > *:nth-child(4), html:not(.wp-toolbar) .formularz .et-container .wrapper form > *:nth-child(5), .acf-block-preview .formularz .et-container .wrapper form > *:nth-child(4), .acf-block-preview .formularz .et-container .wrapper form > *:nth-child(5) {
+  width: calc(50% - 8px);
+}
+body:not(.wp-core-ui) .formularz .et-container .wrapper .attach-file, html:not(.wp-toolbar) .formularz .et-container .wrapper .attach-file, .acf-block-preview .formularz .et-container .wrapper .attach-file {
+  color: #344054;
+  padding: 5px 13px;
+  background: #fff;
+  border-radius: 32px;
+  font-family: Poppins;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 12px;
+  text-transform: uppercase;
+  display: inline-block;
+  margin: 16px 0px;
+  cursor: pointer;
+}
+body:not(.wp-core-ui) .formularz .et-container iframe, html:not(.wp-toolbar) .formularz .et-container iframe, .acf-block-preview .formularz .et-container iframe {
+  margin-bottom: 80px;
+  box-shadow: 32px 32px 64px 0px rgba(52, 64, 84, 0.08);
+}
+
+body.page-id-64 header + .section-title {
+  display: none;
+}/*# sourceMappingURL=style.css.map */

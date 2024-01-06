@@ -36,4 +36,4 @@
   <div class="section-title">
     <?php the_title(); ?>
   </div>
-  <?php endif ?>
+<?php endif ?>

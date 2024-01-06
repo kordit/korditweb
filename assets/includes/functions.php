@@ -4,6 +4,35 @@
 ///////   CORE FUNCTIONS   //////////
 /////////////////////////////////////
 
+function et_r($var, $is_admin = false) {
+	if($is_admin == "debug") {
+		foreach ($var as $single => $key) {
+			if ($single !== 'defined_vars') {
+				echo '<pre>' . $single . ": ";
+				print_r($key);
+				echo '</pre>';
+			}
+		}
+	}
+	elseif (!is_admin()) {
+		echo '<pre>';
+		print_r($var);
+		echo '</pre>';
+	}
+	else {
+		if ($is_admin == true) {
+			echo '<pre>';
+			if ($var) {
+				print_r($var);
+			} else {
+				echo 'Nie znaleziono wartości dla wskazanej zmiennej';
+			}
+			echo '</pre>';
+		}
+	}
+}
+
+
 function et_bg($et_image_setter, $et_opacity_setter)
 {
 	if ($et_image_setter) {
@@ -64,41 +93,6 @@ function et_link($link, $class = "", $title = "")
 		echo '<a ' . $title . ' ' . $blank . $classname . ' href="' . $button["url"] . '">' . $button["title"] . '</a>';
 	}
 }
-
-function et_lottie($json, $x, $type)
-{
-	et_lib_lottie(true);
-	if ($json) {
-		echo '<div id="json_image' . $x . '"></div>';
-		$container_lottie = '#json_image' . $x;
-		?>
-		<script type="text/javascript">
-			var logsEnabled = true
-
-			function waitFor(namespace, timeout, callback, interval) {
-				var defaultInterval = interval >= 0 ? interval : 100;
-				if (window[namespace]) {
-					callback();
-				} else if (timeout <= 0) {
-					return;
-				} else {
-					setTimeout(function() {
-						waitFor(namespace, timeout - defaultInterval, callback, interval);
-					}, defaultInterval);
-				}
-			}
-			waitFor('et_lottie', 1000 * 60, function() {
-				var type_lottie = '<?php echo $type; ?>';
-				var container_lottie = document.querySelector('<?php echo $container_lottie; ?>');
-				var x_lottie = <?php echo $x; ?>;
-				var path_lottie = '<?php echo $json; ?>';
-				var icon_lottie = 'iconMenu' + x_lottie;
-				et_lottie(container_lottie, x_lottie, path_lottie, icon_lottie, type_lottie);
-			})
-		</script>
-	<?php }
-}
-
 function et_theme_pagination_query($post_query)
 {
 	echo paginate_links(array(
@@ -183,24 +177,27 @@ function et_image($acffield, $size = "full", $url = false, $class = '')
 	} else {
 		$webimage = NULL;
 	}
-	if (is_array($typeacf)) {
+	if (isset($typeacf) && is_array($typeacf)) {
 		$typeacf = $typeacf['ID'];
 	}
-	$webimage = wp_get_attachment_image_url($typeacf, $size);
+	if (isset($typeacf)) {
+		$webimage = wp_get_attachment_image_url($typeacf, $size);
 
-	if ($url == true) {
-		return $webimage;
-	} else {
-		$pieces = explode("/", $webimage);
-		$pathend = end($pieces);
-		$newstring = substr($pathend, -3);
-		$newstring4 = substr($pathend, -4);
-		if ($newstring == 'jpg' || $newstring == 'png' || $newstring4 == 'jpeg' || $newstring4 == 'webp') {
-			echo wp_get_attachment_image($typeacf, $size, false, array("class" => $class));
-		} elseif ($newstring == 'svg') {
-			$webimage = preg_replace('/https?\:\/\/[^\/]*\//', '', $webimage);
-			echo et_get_svg($webimage);
-		} 
+		if ($url == true) {
+			return $webimage;
+		}
+		else {
+			$pieces = explode("/", $webimage);
+			$pathend = end($pieces);
+			$newstring = substr($pathend, -3);
+			$newstring4 = substr($pathend, -4);
+			if ($newstring == 'jpg' || $newstring == 'png' || $newstring4 == 'jpeg' || $newstring4 == 'webp') {
+				echo wp_get_attachment_image($typeacf, $size, false, array("class" => $class));
+			} elseif ($newstring == 'svg') {
+				$webimage = preg_replace('/https?\:\/\/[^\/]*\//', '', $webimage);
+				echo et_get_svg($webimage);
+			} 
+		}
 	}
 }
 
@@ -275,66 +272,72 @@ function et_form($id_form)
 	$shortcut = '[contact-form-7 id="' . $id_form . '"]';
 	return do_shortcode($shortcut);
 }
-
-function et_start_section($et_blockname, $srctemplate, $vars = [1], $et_id = '', $bg = '', $hex = '', $sectionid = '', $container = '')
-{
+function et_start_section($all_values) {
+    // Pobieranie zmiennych
+	$vars = $all_values['defined_vars'];
 	foreach ($vars as $var => $val) {
-		$$var = $val;
-	}
-	if ($et_id) {
-		$et_id = 'id="' . $et_id . '" ';
-	} else {
-		$et_id = "";
-	}
-	if ($hex) {
-		$hex = 'style="background-color:' . $hex . ';"';
-	} else {
-		$hex = "";
-	}
-	if ($bg) {
-		$bg = 'style="background-image:url(' . $bg . ');"';
-	} else {
-		$bg = "";
-	}
-	if (isset($block['className'])) {
-		$additional_class = ' ';
-		$additional_class .= $block['className'];
-	} else {
-		$additional_class = "";
-	}
-	echo '<section class="' . $et_blockname . '__' . $sectionid . ' ' . $et_blockname . $additional_class . '" ' . $et_id . '>';
-	if ($bg || $hex) {
-		echo '<div class="background-wrapper" ' . $bg . '><div ' . $hex . '></div>' .
-		'</div>';
-	}
-	if (!empty($container)) {
-		echo '<div class="' . $container . '">';
-	}
-	include($srctemplate);
-	if (!empty($container)) {
-		echo '</div>';
-	}
-	echo "</section>";
+        $$var = $val; // Dynamiczne przypisanie wartości do zmiennych
+    }
+
+    // Przetwarzanie ID sekcji
+    $section_id = (!empty($all_values['id_section'])) ? 'id="' . $all_values['id_section'] . '" ' : "";
+
+    // Ustawianie koloru nakładki
+    $hex_style = (!empty($all_values['overlay'])) ? 'background-color:' . $all_values['overlay'] . ';' : "";
+
+    // Ustawianie mix-blend-mode
+    $mix_blend_mode_style = (!empty($all_values['mix_blend_mode'])) ? 'mix-blend-mode:' . $all_values['mix_blend_mode'] . ';' : "";
+
+    // Ustawianie dodatkowych klas
+    $additional_class = (!empty($block['className'])) ? ' ' . $block['className'] : "";
+
+    // Dodawanie klasy dla type_mix_blend_mode
+    $type_mix_blend_mode_class = !empty($all_values['type_mix_blend']) ? 'mix-blend-' . $all_values['type_mix_blend'] : '';
+
+    // Rozpoczęcie sekcji
+    echo '<section class="' . $all_values['name_src'] . ' ' . $all_values['name_src'] . '__' . $all_values['counter_section'] . $additional_class . '"' . $section_id . '>';
+
+    // Ustawienie tła lub wideo
+    if ($all_values['type'] == 1 && !empty($all_values['background_image'])) {
+        // Tło jako obraz
+    	$bg_img_style = $all_values['type_mix_blend'] == 'video_image' ? $mix_blend_mode_style : '';
+    	echo '<div class="background-wrapper ' . $type_mix_blend_mode_class . '"><img src="' . $all_values['background_image'] . '" style="' . $bg_img_style . '">';
+    	if (!empty($all_values['overlay'])) {
+    		$overlay_style = $all_values['type_mix_blend'] == 'overlay' ? $mix_blend_mode_style : '';
+            echo '<div style="' . $hex_style . $overlay_style . '"></div>'; // Nakładka dla tła
+        }
+        echo '</div>';
+    } elseif ($all_values['type'] == 2 && !empty($all_values['video_url'])) {
+        // Wideo
+    	$video_style = $all_values['type_mix_blend'] == 'video_image' ? $mix_blend_mode_style : '';
+    	$poster_attr = (!empty($all_values['poster'])) ? 'poster="' . $all_values['poster'] . '"' : '';
+    	echo '<div class="video-wrapper ' . $type_mix_blend_mode_class . '"><video ' . $poster_attr . ' style="' . $video_style . '" src="' . $all_values['video_url'] . '" autoplay loop muted></video>';
+    	if (!empty($all_values['overlay'])) {
+    		$overlay_style = $all_values['type_mix_blend'] == 'overlay' ? $mix_blend_mode_style : '';
+            echo '<div style="' . $hex_style . $overlay_style . '"></div>'; // Nakładka dla wideo
+        }
+        echo '</div>';
+    }
+
+    // Zawartość kontenera
+    if (!empty($all_values['container'])) {
+    	echo '<div class="' . $all_values['container'] . '">';
+    }
+
+    // Dołączanie szablonu
+    include($all_values['srctemplate']);
+
+    if (!empty($all_values['container'])) {
+        echo '</div>'; // Zamknięcie kontenera
+    }
+
+    echo "</section>"; // Zamknięcie sekcji
 }
 
-function et_r($var, $is_admin = false)
-{
-	if (!is_admin()) {
-		echo '<pre>';
-		print_r($var);
-		echo '</pre>';
-	} else {
-		if ($is_admin == true) {
-			echo '<pre>';
-			if ($var) {
-				print_r($var);
-			} else {
-				echo 'Nie znaleziono wartości dla wskazanej zmiennej';
-			}
-			echo '</pre>';
-		}
-	}
-}
+
+
+
+
 
 function add_css_theme($name, $linkcss)
 {

@@ -1,5 +1,8 @@
-body:not(.wp-core-ui),html:not(.wp-toolbar),.acf-block-preview { 
+body:not(.wp-core-ui),
+html:not(.wp-toolbar),
+.acf-block-preview {
 	.slider {
+
 		.content {
 			position: absolute;
 			top: 0;
@@ -11,7 +14,4 @@ body:not(.wp-core-ui),html:not(.wp-toolbar),.acf-block-preview {
 			align-items: center;
 		}
 	}
-} 
-
-
-
+}

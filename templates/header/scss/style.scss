@@ -1,11 +1,10 @@
 header#header {
   z-index: 100;
-  position: relative;
+  position: absolute;
   margin: auto;
   top: 0;
   width: 100%;
-  background: #fff;
-  padding: 25px 0;
+  padding: 16px 0;
   @media (max-width: 991px) {
     padding: 10px 0;
   }
@@ -141,5 +140,15 @@ header#header {
   &.active {
     opacity: 1;
     visibility: visible;
+  }
+}
+#wpadminbar {
+  bottom:0;
+  top:inherit;
+  transform:translateY(32px);
+  transition-duration:.5s;
+  &:hover {
+    transform:translateY(0px);
+
   }
 }

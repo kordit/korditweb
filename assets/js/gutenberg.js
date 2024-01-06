@@ -14,3 +14,5 @@ linkTags.forEach((tag) => {
     tag.after(link);
   }
 });
+
+console.log('works');
