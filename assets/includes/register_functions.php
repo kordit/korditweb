@@ -259,7 +259,7 @@ function et_get_fields_acf($single_acf, $depth = 1, $classname = '')
 		$type_field .= '$moj_cpt_query = new WP_Query($args);' . PHP_EOL;
 		$type_field .= '' . PHP_EOL;
 		$type_field .= 'if ($moj_cpt_query->have_posts()) :' . PHP_EOL;
-		$type_field .= '    while ($moj_cpt_query->have_posts()) : $moj_cpt_query->the_post(); ?>' . PHP_EOL;
+		$type_field .= '    while ($moj_cpt_query->have_posts()) : $moj_cpt_query->the_post();' . PHP_EOL;
 		$type_field .= ' $fields = get_fields(get_the_ID());' . PHP_EOL;
 		$type_field .= '  if ($fields) {' . PHP_EOL;
 		$type_field .= '     acf_setup_meta($fields, get_the_ID(), true);' . PHP_EOL;
