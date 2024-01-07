@@ -271,8 +271,8 @@
             },
             "custom_post_type": "oferta",
             "selected_acf_fields": [
-                "field_65984df7f9abf",
-                "field_65984e01f9ac0"
+                "inne_mozliwosci",
+                "repater"
             ]
         }
     ],
@@ -294,5 +294,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1704547767
+    "modified": 1704636576
 }

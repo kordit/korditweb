@@ -114,6 +114,10 @@ function write_acf_template_files($singleacf, $render_template_create, $slug) {
 	if (!file_exists($srcss)) {
 		et_write($srcss, $css);
 	}
+	$srscss = $render_template_create . '/assets/style.scss';
+	if (!file_exists($srscss)) {
+		et_write($srscss, $css);
+	}
 
 	$srcjs = $render_template_create . '/assets/script.js';
 	if (!file_exists($srcjs) && !empty($all_code_js)) {

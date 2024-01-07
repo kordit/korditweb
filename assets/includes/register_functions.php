@@ -1,20 +1,21 @@
 <?php
-class acf_field_ulepszony_naglowek extends acf_field {
+class acf_field_ulepszony_naglowek extends acf_field
+{
 
-	function __construct() {
+	function __construct()
+	{
 		$this->name = 'seo_title';
 		$this->label = __('Ulepszony Nagłówek', 'acf');
 		$this->category = 'basic';
-		$this->defaults = array(
-
-		);
+		$this->defaults = array();
 
 		parent::__construct();
 	}
-	function render_field( $field ) {
+	function render_field($field)
+	{
 		$heading = isset($field['value']['heading']) ? $field['value']['heading'] : '';
 		$value = isset($field['value']['value']) ? $field['value']['value'] : '';
-		$default_title = isset($field['value']['default_title']) ? $field['value']['default_title'] : 'Domyślny Tytuł'; 
+		$default_title = isset($field['value']['default_title']) ? $field['value']['default_title'] : 'Domyślny Tytuł';
 
 		echo '<div class="acf-field-ulepszony-naglowek-select">';
 		echo '<select name="' . esc_attr($field['name']) . '[heading]">';
@@ -29,21 +30,23 @@ class acf_field_ulepszony_naglowek extends acf_field {
 		echo '<div class="acf-field-ulepszony-naglowek-text">';
 		echo '<input type="text" name="' . esc_attr($field['name']) . '[value]" value="' . $value . '">';
 		echo '</div>';
-
 	}
 
 
 
-	function load_value( $value, $post_id, $field ) {
+	function load_value($value, $post_id, $field)
+	{
 		return $value;
 	}
 
-	function update_value( $value, $post_id, $field ) {
+	function update_value($value, $post_id, $field)
+	{
 		return $value;
 	}
 
-	function format_value( $value, $post_id, $field ) {
-		if( empty($value) || !is_array($value) || !isset($value['heading']) || !isset($value['value']) ) {
+	function format_value($value, $post_id, $field)
+	{
+		if (empty($value) || !is_array($value) || !isset($value['heading']) || !isset($value['value'])) {
 			return '';
 		}
 		$h = esc_html($value['heading']);
@@ -52,19 +55,22 @@ class acf_field_ulepszony_naglowek extends acf_field {
 	}
 }
 
-add_action('acf/include_field_types', function() {
+add_action('acf/include_field_types', function () {
 	new acf_field_ulepszony_naglowek();
 });
 
-class My_Custom_ACF_Field extends acf_field {
+class My_Custom_ACF_Field extends acf_field
+{
 
-	function __construct() {
+	function __construct()
+	{
 		$this->name = 'get_cpt_fields';
 		$this->label = 'Wygeneruj CPT';
-		$this->category = 'choice'; 
+		$this->category = 'choice';
 		parent::__construct();
 	}
-	function get_acf_fields_for_cpt($cpt) {
+	function get_acf_fields_for_cpt($cpt)
+	{
 		$fields = [];
 		$field_groups = acf_get_field_groups();
 
@@ -74,9 +80,14 @@ class My_Custom_ACF_Field extends acf_field {
 					if ($location['param'] == 'post_type' && $location['value'] == $cpt) {
 						$group_fields = acf_get_fields($field_group['key']);
 						foreach ($group_fields as $group_field) {
-							$fields[] = ['key' => $group_field['key'], 'label' => $group_field['label']];
+							et_r($group_field);
+							$fields[] = [
+								'name' => $group_field['name'],
+								'label' => $group_field['label'],
+								'type' => $group_field['type']
+							];
 						}
-						break 2; 
+						break 2;
 					}
 				}
 			}
@@ -84,7 +95,8 @@ class My_Custom_ACF_Field extends acf_field {
 
 		return $fields;
 	}
-	function render_field_settings($field) {
+	function render_field_settings($field)
+	{
 		acf_render_field_setting($field, [
 			'label' => 'Wybierz Custom Post Type',
 			'instructions' => '',
@@ -98,7 +110,7 @@ class My_Custom_ACF_Field extends acf_field {
 
 			$choices = [];
 			foreach ($acf_fields as $acf_field) {
-				$choices[$acf_field['key']] = $acf_field['label'];
+				$choices[$acf_field['name']] = $acf_field['label'];
 			}
 
 			acf_render_field_setting($field, [
@@ -111,7 +123,8 @@ class My_Custom_ACF_Field extends acf_field {
 		}
 	}
 
-	function get_custom_post_types_choices() {
+	function get_custom_post_types_choices()
+	{
 		$choices = [];
 		$post_types = get_post_types(['public' => true], 'objects');
 
@@ -121,31 +134,31 @@ class My_Custom_ACF_Field extends acf_field {
 
 		return $choices;
 	}
-
-
 }
 
-add_action('acf/include_field_types', function($version) {
+add_action('acf/include_field_types', function ($version) {
 	new My_Custom_ACF_Field();
 });
 
 
 
-function et_write($srctemplate, $datatemplate = '') {
+function et_write($srctemplate, $datatemplate = '')
+{
 	$template = fopen($srctemplate, 'w');
 	fwrite($template, $datatemplate);
 	fclose($template);
 }
 
-function et_get_fields_acf($single_acf, $depth = 1, $classname = '', $randomizer_class = '') {
+function et_get_fields_acf($single_acf, $depth = 1, $classname = '', $randomizer_class = '')
+{
 	$type_field = '';
 	$field = $depth == 1 ? 'the_field' : 'the_sub_field';
 	$get_field = $depth == 1 ? 'get_field' : 'get_sub_field';
 	$type = $single_acf['type'];
 	$name = $single_acf['name'];
-	$classa = isset($single_acf['wrapper']['class']) && !empty($single_acf['wrapper']['class']) 
-	? $single_acf['wrapper']['class'] 
-	: (!empty($name) ? $classname . '--' . $name : '');
+	$classa = isset($single_acf['wrapper']['class']) && !empty($single_acf['wrapper']['class'])
+		? $single_acf['wrapper']['class']
+		: (!empty($name) ? $classname . '--' . $name : '');
 
 	if ($type == 'repeater' || $type == 'group') {
 		$repeater = $single_acf['sub_fields'];
@@ -153,57 +166,77 @@ function et_get_fields_acf($single_acf, $depth = 1, $classname = '', $randomizer
 		$library = $single_acf['library_type'] ?? 0;
 		$repeaterFile = get_repeater_file($library);
 		include(get_template_directory() . $repeaterFile);
-	}
-	else {
+	} else {
 		switch ($type) {
 			case 'text':
+			case 'number':
 			case 'textarea':
-			$type_field .= "<div class=\"$classa\">" . PHP_EOL . "<?php $field('$name'); ?>" . PHP_EOL . '</div>' . PHP_EOL;
-			break;
+				$type_field .= "<div class=\"$classa\">" . PHP_EOL . "<?php $field('$name'); ?>" . PHP_EOL . '</div>' . PHP_EOL;
+				break;
+			case 'url':
+				$type_field .= "<a href=\"<?php $field('$name'); ?>\" class=\"$classa\">" . PHP_EOL . "<?php $field('$name'); ?>" . PHP_EOL . '</a>' . PHP_EOL;
+				break;
 			case 'image':
-			$type_field .= "<?php et_image('$name', 'full', false, '$classa'); ?>" . PHP_EOL;
-			break;
+				$type_field .= "<?php et_image('$name', 'full', false, '$classa'); ?>" . PHP_EOL;
+				break;
 			case 'link':
-			$type_field .= "<div class=\"btn-wrapper\">" . PHP_EOL . "<?php et_link('$name', '$classa'); ?>" . PHP_EOL . '</div>' . PHP_EOL;
-			break;
+				$type_field .= "<div class=\"btn-wrapper\">" . PHP_EOL . "<?php et_link('$name', '$classa'); ?>" . PHP_EOL . '</div>' . PHP_EOL;
+				break;
+			case 'message':
+				break;
 			case 'email':
-			$type_field .= "<a href=\"mailto:<?php $field('$name'); ?>\" class=\"$classa\">" . PHP_EOL . "<?php $field('$name'); ?>" . PHP_EOL . '</a>' . PHP_EOL;
-			break;
+				$type_field .= "<a href=\"mailto:<?php $field('$name'); ?>\" class=\"$classa\">" . PHP_EOL . "<?php $field('$name'); ?>" . PHP_EOL . '</a>' . PHP_EOL;
+				break;
 			case 'gallery':
-			$type_field .= "<?php \$images = $get_field('$name'); \$size = 'full'; if( \$images ): ?>" . PHP_EOL;
-			$type_field .= "<?php foreach( \$images as \$image_id ): ?>" . PHP_EOL;
-			$type_field .= "<?php echo wp_get_attachment_image( \$image_id, \$size ); ?>" . PHP_EOL;
-			$type_field .= "<?php endforeach; endif; ?>" . PHP_EOL;
-			break;
+				$type_field = "";
+				$type_field .= "<?php" . PHP_EOL;
+				$type_field .= "\$images = get_field('galeria_zdjec');" . PHP_EOL;
+				$type_field .= "\$size = 'full';" . PHP_EOL;
+				$type_field .= "if (\$images) :" . PHP_EOL;
+				$type_field .= "foreach (\$images as \$image_id) :" . PHP_EOL;
+				$type_field .= "\$image = wp_get_attachment_image(\$image_id, \$size);" . PHP_EOL;
+				$type_field .= "\$image_url = wp_get_attachment_image_src(\$image_id, \$size)[0];" . PHP_EOL;
+				$type_field .= "?>" . PHP_EOL;
+				$type_field .= "<a class=\"name_library\" href=\"<?= esc_url(\$image_url); ?>\"><?= \$image; ?></a>" . PHP_EOL;
+				$type_field .= "<?php" . PHP_EOL;
+				$type_field .= "endforeach;" . PHP_EOL;
+				$type_field .= "endif;" . PHP_EOL;
+				$type_field .= "?>" . PHP_EOL;
+				break;
 			case 'relationship':
-			if (!isset($single_acf['post_type']) || $single_acf['post_type'][0] == 'wpcf7_contact_form') {
-				$type_field .= "<?php \$formid = $get_field('$name')[0]->ID; ?>" . PHP_EOL;
-				$type_field .= "<?= et_form(\$formid); ?>" . PHP_EOL;
-			} else {
-				$type_field .= "<?php \$featured_posts = $get_field('$name'); if( \$featured_posts ): ?>" . PHP_EOL;
-				$type_field .= "<?php foreach( \$featured_posts as \$post ): setup_postdata(\$post); ?>" . PHP_EOL;
-				$type_field .= "<?php the_title(); ?>" . PHP_EOL;
-				$type_field .= "<?php endforeach; wp_reset_postdata(); endif; ?>" . PHP_EOL;
-			}
-			break;
+				if (!isset($single_acf['post_type']) || $single_acf['post_type'][0] == 'wpcf7_contact_form') {
+					$type_field .= "<?php \$formid = $get_field('$name')[0]->ID; ?>" . PHP_EOL;
+					$type_field .= "<?= et_form(\$formid); ?>" . PHP_EOL;
+				} else {
+					$type_field .= "<?php \$featured_posts = $get_field('$name'); if( \$featured_posts ): ?>" . PHP_EOL;
+					$type_field .= "<?php foreach( \$featured_posts as \$post ): setup_postdata(\$post); ?>" . PHP_EOL;
+					$type_field .= "<?php the_title(); ?>" . PHP_EOL;
+					$type_field .= "<?php endforeach; wp_reset_postdata(); endif; ?>" . PHP_EOL;
+				}
+				break;
 			default:
-			$type_field .= "<div class=\"$classa\">" . PHP_EOL . "<?php $field('$name'); ?>" . PHP_EOL . '</div>' . PHP_EOL;
+				$type_field .= "<div class=\"$classa\">" . PHP_EOL . "<?php $field('$name'); ?>" . PHP_EOL . '</div>' . PHP_EOL;
 		}
 	}
 
 	return $type_field;
 }
 
-function get_repeater_file($library) {
+function get_repeater_file($library)
+{
 	switch ($library) {
-		case 1: return '/assets/includes/file_configurator/splide-repeater.php';
-		case 2: return '/assets/includes/file_configurator/accordion-repeater.php';
-		default: return '/assets/includes/file_configurator/default-repeater.php';
+		case 1:
+			return '/assets/includes/file_configurator/splide-repeater.php';
+		case 2:
+			return '/assets/includes/file_configurator/accordion-repeater.php';
+		default:
+			return '/assets/includes/file_configurator/default-repeater.php';
 	}
 }
 
 
-function et_get_fields_css($single_acf) {
+function et_get_fields_css($single_acf)
+{
 	$css = 'body:not(.wp-core-ui),html:not(.wp-toolbar),.acf-block-preview { ' . PHP_EOL . '.' . $single_acf . ' {' . PHP_EOL . PHP_EOL;
 	$css .= '}' . PHP_EOL . '}';
 	return $css;
@@ -229,7 +262,8 @@ function return_all_repeater($acf)
 	}
 }
 
-function et_get_fields_js($typejs, $classname = '', $slug = '') {
+function et_get_fields_js($typejs, $classname = '', $slug = '')
+{
 	$datajs = '';
 	if ($typejs == 1) {
 		$slugrp = str_replace('-', '_', $slug);
