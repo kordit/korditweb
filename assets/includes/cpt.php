@@ -121,7 +121,7 @@ function generate_cpt_files()
 		$param = $unserialized['location'][0][0]['param'];
 		$namecpt = $unserialized['location'][0][0]['value'];
 		if (in_array($namecpt, $post_types)) {
-			if ($param == 'post_type') {
+			if ($param == 'post_type' && isset($single_json_acf->post_name)) {
 				$acf_cpt[] = $namecpt;
 				$singleJSON = $single_json_acf->post_name;
 				$slug = $single_json_acf->post_excerpt;

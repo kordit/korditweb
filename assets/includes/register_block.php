@@ -1,7 +1,8 @@
 <?php
 add_action('acf/init', 'my_acf_blocks_init');
 
-function my_acf_blocks_init() {
+function my_acf_blocks_init()
+{
 	if (!function_exists('acf_register_block_type')) {
 		return;
 	}
@@ -12,16 +13,16 @@ function my_acf_blocks_init() {
 		'posts_per_page' => -1
 	));
 
-	$webinfo = 'block-templates';
-	$current_dir = get_template_directory() . '/blocks/' . $webinfo . '/';
+	$current_dir = get_template_directory() . '/blocks/block-templates/';
 	create_directories_if_not_exist($current_dir);
 
 	foreach ($type->posts as $singleacf) {
-		process_single_acf_block($singleacf, $current_dir, $webinfo);
+		process_single_acf_block($singleacf, $current_dir);
 	}
 }
 
-function create_directories_if_not_exist($directory) {
+function create_directories_if_not_exist($directory)
+{
 	if (file_exists($directory)) {
 		return;
 	}
@@ -29,7 +30,8 @@ function create_directories_if_not_exist($directory) {
 	mkdir($directory, 0755, true);
 }
 
-function process_single_acf_block($singleacf, $current_dir, $webinfo) {
+function process_single_acf_block($singleacf, $current_dir)
+{
 	$title = $singleacf->post_title;
 	$slug = $singleacf->post_excerpt;
 	$array = unserialize($singleacf->post_content);
@@ -38,14 +40,15 @@ function process_single_acf_block($singleacf, $current_dir, $webinfo) {
 		return;
 	}
 
-	$render_template_create = get_template_directory() . '/blocks/' . $webinfo . '/' . $slug;
+	$render_template_create = get_template_directory() . '/blocks/block-templates/' . $slug;
 	create_directories_if_not_exist($render_template_create . '/assets');
 
 	register_acf_blocks($title, $slug, $array, $render_template_create);
 	process_acf_fields($singleacf, $render_template_create, $slug);
 }
 
-function register_acf_blocks($title, $slug, $array, $render_template_create) {
+function register_acf_blocks($title, $slug, $array, $render_template_create)
+{
 	acf_register_block_type(array(
 		'name'              => $slug,
 		'title'             => __($title),
@@ -62,11 +65,13 @@ function register_acf_blocks($title, $slug, $array, $render_template_create) {
 	));
 }
 
-function process_acf_fields($singleacf, $render_template_create, $slug) {
+function process_acf_fields($singleacf, $render_template_create, $slug)
+{
 	write_acf_template_files($singleacf, $render_template_create, $slug);
 }
 
-function write_acf_template_files($singleacf, $render_template_create, $slug) {
+function write_acf_template_files($singleacf, $render_template_create, $slug)
+{
 	$active_num_library = [];
 
 	$srcjson = get_template_directory() . '/acf-json/' . $singleacf->post_name . '.json';

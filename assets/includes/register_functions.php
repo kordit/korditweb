@@ -80,14 +80,14 @@ class My_Custom_ACF_Field extends acf_field
 					if ($location['param'] == 'post_type' && $location['value'] == $cpt) {
 						$group_fields = acf_get_fields($field_group['key']);
 						foreach ($group_fields as $group_field) {
-							et_r($group_field);
 							$fields[] = [
 								'name' => $group_field['name'],
 								'label' => $group_field['label'],
-								'type' => $group_field['type']
+								'type' => $group_field['type'],
+								'group_id' => $field_group['key'] // Dodano identyfikator grupy pól
 							];
 						}
-						break 2;
+						break;
 					}
 				}
 			}
@@ -95,8 +95,10 @@ class My_Custom_ACF_Field extends acf_field
 
 		return $fields;
 	}
+
 	function render_field_settings($field)
 	{
+		// Załóżmy, że get_custom_post_types_choices zwraca listę typów postów
 		acf_render_field_setting($field, [
 			'label' => 'Wybierz Custom Post Type',
 			'instructions' => '',
@@ -112,9 +114,27 @@ class My_Custom_ACF_Field extends acf_field
 			foreach ($acf_fields as $acf_field) {
 				$choices[$acf_field['name']] = $acf_field['label'];
 			}
+			$group_ids = [];
+			foreach ($acf_fields as $acf_field) {
+				if (!in_array($acf_field['group_id'], $group_ids)) {
+					$url = acf_get_field_group($acf_field['group_id']);
+					$group_ids[] = $acf_field['group_id'];
+				}
+			}
+
+			// Wyświetlanie identyfikatorów grup pól
+			acf_render_field_setting($field, [
+				'label' => 'ID Grup Pól',
+				'type' => 'textarea',
+				'name' => 'field_group_ids',
+				'value' => implode(', ', $group_ids),
+				'readonly' => true,
+				// 'disabled' => true,
+			]);
 
 			acf_render_field_setting($field, [
 				'label' => 'Wybierz pola, które ma wygenerować dla danego bloku',
+				'instructions' => 'Wybierz pola z odpowiednich grup pól ACF.',
 				'type' => 'checkbox',
 				'name' => 'selected_acf_fields',
 				'choices' => $choices,
@@ -122,6 +142,7 @@ class My_Custom_ACF_Field extends acf_field
 			]);
 		}
 	}
+
 
 	function get_custom_post_types_choices()
 	{
@@ -149,7 +170,63 @@ function et_write($srctemplate, $datatemplate = '')
 	fclose($template);
 }
 
-function et_get_fields_acf($single_acf, $depth = 1, $classname = '', $randomizer_class = '')
+function generate_field_html($type, $name, $classa, $single_acf, $get_field, $field)
+{
+	$type_field = "";
+	switch ($type) {
+		case 'text':
+		case 'number':
+		case 'textarea':
+			$type_field .= "<div class=\"$classa\">" . PHP_EOL . "<?php $field('$name'); ?>" . PHP_EOL . '</div>' . PHP_EOL;
+			break;
+		case 'url':
+			$type_field .= "<a href=\"<?php $field('$name'); ?>\" class=\"$classa\">" . PHP_EOL . "<?php $field('$name'); ?>" . PHP_EOL . '</a>' . PHP_EOL;
+			break;
+		case 'image':
+			$type_field .= "<?php et_image('$name', 'full', false, '$classa'); ?>" . PHP_EOL;
+			break;
+		case 'link':
+			$type_field .= "<div class=\"btn-wrapper\">" . PHP_EOL . "<?php et_link('$name', '$classa'); ?>" . PHP_EOL . '</div>' . PHP_EOL;
+			break;
+		case 'message':
+			break;
+		case 'email':
+			$type_field .= "<a href=\"mailto:<?php $field('$name'); ?>\" class=\"$classa\">" . PHP_EOL . "<?php $field('$name'); ?>" . PHP_EOL . '</a>' . PHP_EOL;
+			break;
+		case 'gallery':
+			$type_field = "";
+			$type_field .= "<?php" . PHP_EOL;
+			$type_field .= "\$images = get_field('galeria_zdjec');" . PHP_EOL;
+			$type_field .= "\$size = 'full';" . PHP_EOL;
+			$type_field .= "if (\$images) :" . PHP_EOL;
+			$type_field .= "foreach (\$images as \$image_id) :" . PHP_EOL;
+			$type_field .= "\$image = wp_get_attachment_image(\$image_id, \$size);" . PHP_EOL;
+			$type_field .= "\$image_url = wp_get_attachment_image_src(\$image_id, \$size)[0];" . PHP_EOL;
+			$type_field .= "?>" . PHP_EOL;
+			$type_field .= "<a class=\"name_library\" href=\"<?= esc_url(\$image_url); ?>\"><?= \$image; ?></a>" . PHP_EOL;
+			$type_field .= "<?php" . PHP_EOL;
+			$type_field .= "endforeach;" . PHP_EOL;
+			$type_field .= "endif;" . PHP_EOL;
+			$type_field .= "?>" . PHP_EOL;
+			break;
+		case 'relationship':
+			if (!isset($single_acf['post_type']) || $single_acf['post_type'][0] == 'wpcf7_contact_form') {
+				$type_field .= "<?php \$formid = $get_field('$name')[0]->ID; ?>" . PHP_EOL;
+				$type_field .= "<?= et_form(\$formid); ?>" . PHP_EOL;
+			} else {
+				$type_field .= "<?php \$featured_posts = $get_field('$name'); if( \$featured_posts ): ?>" . PHP_EOL;
+				$type_field .= "<?php foreach( \$featured_posts as \$post ): setup_postdata(\$post); ?>" . PHP_EOL;
+				$type_field .= "<?php the_title(); ?>" . PHP_EOL;
+				$type_field .= "<?php endforeach; wp_reset_postdata(); endif; ?>" . PHP_EOL;
+			}
+			break;
+		default:
+			$type_field .= "<div class=\"$classa\">" . PHP_EOL . "<?php $field('$name'); ?>" . PHP_EOL . '</div>' . PHP_EOL;
+	}
+	return $type_field;
+}
+
+function et_get_fields_acf($single_acf, $depth = 1, $classname = '')
 {
 	$type_field = '';
 	$field = $depth == 1 ? 'the_field' : 'the_sub_field';
@@ -166,57 +243,61 @@ function et_get_fields_acf($single_acf, $depth = 1, $classname = '', $randomizer
 		$library = $single_acf['library_type'] ?? 0;
 		$repeaterFile = get_repeater_file($library);
 		include(get_template_directory() . $repeaterFile);
-	} else {
-		switch ($type) {
-			case 'text':
-			case 'number':
-			case 'textarea':
-				$type_field .= "<div class=\"$classa\">" . PHP_EOL . "<?php $field('$name'); ?>" . PHP_EOL . '</div>' . PHP_EOL;
-				break;
-			case 'url':
-				$type_field .= "<a href=\"<?php $field('$name'); ?>\" class=\"$classa\">" . PHP_EOL . "<?php $field('$name'); ?>" . PHP_EOL . '</a>' . PHP_EOL;
-				break;
-			case 'image':
-				$type_field .= "<?php et_image('$name', 'full', false, '$classa'); ?>" . PHP_EOL;
-				break;
-			case 'link':
-				$type_field .= "<div class=\"btn-wrapper\">" . PHP_EOL . "<?php et_link('$name', '$classa'); ?>" . PHP_EOL . '</div>' . PHP_EOL;
-				break;
-			case 'message':
-				break;
-			case 'email':
-				$type_field .= "<a href=\"mailto:<?php $field('$name'); ?>\" class=\"$classa\">" . PHP_EOL . "<?php $field('$name'); ?>" . PHP_EOL . '</a>' . PHP_EOL;
-				break;
-			case 'gallery':
-				$type_field = "";
-				$type_field .= "<?php" . PHP_EOL;
-				$type_field .= "\$images = get_field('galeria_zdjec');" . PHP_EOL;
-				$type_field .= "\$size = 'full';" . PHP_EOL;
-				$type_field .= "if (\$images) :" . PHP_EOL;
-				$type_field .= "foreach (\$images as \$image_id) :" . PHP_EOL;
-				$type_field .= "\$image = wp_get_attachment_image(\$image_id, \$size);" . PHP_EOL;
-				$type_field .= "\$image_url = wp_get_attachment_image_src(\$image_id, \$size)[0];" . PHP_EOL;
-				$type_field .= "?>" . PHP_EOL;
-				$type_field .= "<a class=\"name_library\" href=\"<?= esc_url(\$image_url); ?>\"><?= \$image; ?></a>" . PHP_EOL;
-				$type_field .= "<?php" . PHP_EOL;
-				$type_field .= "endforeach;" . PHP_EOL;
-				$type_field .= "endif;" . PHP_EOL;
-				$type_field .= "?>" . PHP_EOL;
-				break;
-			case 'relationship':
-				if (!isset($single_acf['post_type']) || $single_acf['post_type'][0] == 'wpcf7_contact_form') {
-					$type_field .= "<?php \$formid = $get_field('$name')[0]->ID; ?>" . PHP_EOL;
-					$type_field .= "<?= et_form(\$formid); ?>" . PHP_EOL;
-				} else {
-					$type_field .= "<?php \$featured_posts = $get_field('$name'); if( \$featured_posts ): ?>" . PHP_EOL;
-					$type_field .= "<?php foreach( \$featured_posts as \$post ): setup_postdata(\$post); ?>" . PHP_EOL;
-					$type_field .= "<?php the_title(); ?>" . PHP_EOL;
-					$type_field .= "<?php endforeach; wp_reset_postdata(); endif; ?>" . PHP_EOL;
-				}
-				break;
-			default:
-				$type_field .= "<div class=\"$classa\">" . PHP_EOL . "<?php $field('$name'); ?>" . PHP_EOL . '</div>' . PHP_EOL;
+	} elseif ($type == 'get_cpt_fields') {
+		$custom_post_type = $single_acf['custom_post_type'];
+		$group_ids = $single_acf['field_group_ids'];
+		$group_ids = str_replace(' ', '', $group_ids);
+		$group_ids_array = explode(",", $group_ids);
+
+		$type_field = '';
+		$type_field = '<?php' . PHP_EOL;
+		$type_field .= '$args = array(' . PHP_EOL;
+		$type_field .= "    'post_type' => '" . $custom_post_type . "'," . PHP_EOL;
+		$type_field .= "    'posts_per_page' => -1," . PHP_EOL;
+		$type_field .= ');' . PHP_EOL;
+		$type_field .= '' . PHP_EOL;
+		$type_field .= '$moj_cpt_query = new WP_Query($args);' . PHP_EOL;
+		$type_field .= '' . PHP_EOL;
+		$type_field .= 'if ($moj_cpt_query->have_posts()) :' . PHP_EOL;
+		$type_field .= '    while ($moj_cpt_query->have_posts()) : $moj_cpt_query->the_post(); ?>' . PHP_EOL;
+		$type_field .= ' $fields = get_fields(get_the_ID());' . PHP_EOL;
+		$type_field .= '  if ($fields) {' . PHP_EOL;
+		$type_field .= '     acf_setup_meta($fields, get_the_ID(), true);' . PHP_EOL;
+		$type_field .= '  }' . PHP_EOL;
+		$type_field .= '    while ($moj_cpt_query->have_posts()) : $moj_cpt_query->the_post(); ?>' . PHP_EOL;
+		$type_field .= '        <?php the_post_thumbnail(); ?>' . PHP_EOL;
+		$type_field .= '        <?php the_title(); ?>' . PHP_EOL;
+		$allFields = [];
+
+		foreach ($group_ids_array as $id_array) {
+			if (isset(acf_get_field_group($id_array)['local_file'])) {
+				// et_r(acf_get_field_group($id_array)['local_file']);
+
+				$field_url = acf_get_field_group($id_array)['local_file'];
+				$stringjson = json_decode(file_get_contents($field_url), true);
+				$fields = $stringjson['fields'];
+
+				array_push($allFields, ...$fields);
+			}
 		}
+		$selected_fields = $single_acf['selected_acf_fields'];
+		foreach ($allFields as $single_field) {
+			if (in_array($single_field['name'], $selected_fields)) {
+				$classa = isset($single_field['wrapper']['class']) && !empty($single_field['wrapper']['class'])
+					? $single_field['wrapper']['class']
+					: (!empty($name) ? $single_field['label'] . '--' . $classname . '--' . $name : '');
+				$type_field .= et_get_fields_acf($single_field, 1, $classname);
+			}
+		}
+		$type_field .= '<?php' . PHP_EOL;
+		$type_field .= '    endwhile;' . PHP_EOL;
+		$type_field .= '    wp_reset_postdata();' . PHP_EOL;
+		$type_field .= 'else :' . PHP_EOL;
+		$type_field .= "    echo 'Nie znaleziono postów.';" . PHP_EOL;
+		$type_field .= 'endif;' . PHP_EOL;
+		$type_field .= '?>';
+	} else {
+		$type_field = generate_field_html($type, $name, $classa, $single_acf, $get_field, $field);
 	}
 
 	return $type_field;

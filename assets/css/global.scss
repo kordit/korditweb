@@ -12,7 +12,8 @@ html:not(.wp-toolbar),
   section {
     position: relative;
     isolation: isolate;
-    & > .background-wrapper {
+
+    &>.background-wrapper {
       img {
         object-fit: cover;
         position: absolute;
@@ -22,12 +23,14 @@ html:not(.wp-toolbar),
         height: 100%;
       }
     }
-    & > .video-wrapper {
+
+    &>.video-wrapper {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
+
       video {
         width: 100%;
         height: 100%;
@@ -41,24 +44,33 @@ html:not(.wp-toolbar),
   .background-wrapper,
   .video-wrapper {
     z-index: -1;
+
     &.mix-blend-video_image {
-      video,img {
+
+      video,
+      img {
         z-index: -2;
       }
+
       div {
         z-index: -3;
       }
 
     }
+
     &.mix-blend-overlay {
-      video,img {
+
+      video,
+      img {
         z-index: -3;
       }
+
       div {
         z-index: -2;
       }
 
     }
+
     div {
       position: absolute;
       top: 0;

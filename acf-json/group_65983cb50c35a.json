@@ -256,11 +256,11 @@
             "append": ""
         },
         {
-            "key": "field_659888ed0b3a2",
-            "label": "Testowe cpt",
-            "name": "testowe_cpt",
+            "key": "field_659ab5546913f",
+            "label": "testowa liczba",
+            "name": "testowa_liczba",
             "aria-label": "",
-            "type": "get_cpt_fields",
+            "type": "number",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -269,11 +269,68 @@
                 "class": "",
                 "id": ""
             },
+            "default_value": "",
+            "min": "",
+            "max": "",
+            "placeholder": "",
+            "step": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_659ab5cc69140",
+            "label": "Testowy url",
+            "name": "testowy_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_659ab628e91b1",
+            "label": "wysiwgi",
+            "name": "wysiwgi",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_659adb1fe4435",
+            "label": "p5",
+            "name": "p5",
+            "aria-label": "",
+            "type": "get_cpt_fields",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "jakas-klasa",
+                "id": ""
+            },
             "custom_post_type": "oferta",
-            "selected_acf_fields": [
-                "inne_mozliwosci",
-                "repater"
-            ]
+            "field_group_ids": "",
+            "selected_acf_fields": ""
         }
     ],
     "location": [
@@ -294,5 +351,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1704636576
+    "modified": 1704662032
 }

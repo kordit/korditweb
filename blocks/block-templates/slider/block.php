@@ -1,4 +1,4 @@
-<?php 
+<?php
 $srcdir = dirname(__FILE__);
 $srctemplate = "$srcdir/assets/template.php";
 $srcdirParts = explode("/", $srcdir);
@@ -14,7 +14,7 @@ $additional = array(
 	"src_template" => $srctemplate,
 	"last_src" => $lastsrc,
 	"name_src" => $namesrc,
-	"container" => "et-container",
+	"container" => "",
 	"counter_section" => $counter,
 	"defined_vars" => get_defined_vars(),
 	"srctemplate" => $srctemplate
@@ -27,8 +27,8 @@ $GLOBALS["counter-section"] = $GLOBALS["counter-section"] + 1;
 et_lib_splide(true);
 add_css_theme($namesrc, $lastsrc .  "/assets/style.css");
 add_js_theme($namesrc, $lastsrc .  "/assets/script.js");
-if(is_admin()) {
-	add_action("enqueue_block_editor_assets", function () use(&$namesrc, $lastsrc) {
+if (is_admin()) {
+	add_action("enqueue_block_editor_assets", function () use (&$namesrc, $lastsrc) {
 		et_lib_splide(true);
 		add_css_theme($namesrc, $lastsrc .  "/assets/style.css");
 		add_js_theme($namesrc, $lastsrc .  "/assets/script.js");

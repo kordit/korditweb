@@ -1,11 +1,11 @@
 {
-    "key": "group_65984df6dc75d",
-    "title": "CPT oferty",
+    "key": "group_659b12197d8a7",
+    "title": "Realizacje - cpt",
     "fields": [
         {
-            "key": "field_65984df7f9abf",
-            "label": "Ceny",
-            "name": "ceny",
+            "key": "field_659b121931140",
+            "label": "Cena",
+            "name": "cena",
             "aria-label": "",
             "type": "text",
             "instructions": "",
@@ -23,11 +23,11 @@
             "append": ""
         },
         {
-            "key": "field_65984e01f9ac0",
-            "label": "Inne możliwości",
-            "name": "inne_mozliwosci",
+            "key": "field_659b122b31141",
+            "label": "Grafika",
+            "name": "grafika",
             "aria-label": "",
-            "type": "text",
+            "type": "image",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -36,18 +36,23 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "preview_size": "medium"
         },
         {
-            "key": "field_65984e08f9ac1",
-            "label": "Repater",
-            "name": "repater",
+            "key": "field_659b123531142",
+            "label": "Link",
+            "name": "link",
             "aria-label": "",
-            "type": "repeater",
+            "type": "link",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -56,15 +61,22 @@
                 "class": "",
                 "id": ""
             },
-            "layout": "table",
-            "pagination": 0,
-            "library_type": 0,
-            "min": 0,
-            "max": 0,
-            "collapsed": "",
-            "button_label": "Dodaj wiersz",
-            "rows_per_page": 20,
-            "sub_fields": []
+            "return_format": "array"
+        },
+        {
+            "key": "field_659b123f31143",
+            "label": "Ulepszony tytuł",
+            "name": "ulepszony_tytul",
+            "aria-label": "",
+            "type": "seo_title",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
         }
     ],
     "location": [
@@ -72,7 +84,7 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "oferta"
+                "value": "realizacje"
             }
         ]
     ],
@@ -85,5 +97,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1704495277
+    "modified": 1704662032
 }
