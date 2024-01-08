@@ -1,6 +1,6 @@
 <?php include("config.php"); ?>
 <h1>post</h1>
-Plik można edytować w <b>"/usr/home/thesuit1995/domains/brrg.ergotree.pl/public_html/wp-content/themes/ergotree/cpt/cpt-templates/post/single//assets/template.php"</b>
+Plik można edytować w <b>"/usr/home/huximo/domains/beta.huximo.pl/public_html/wp-content/themes/korditweb/cpt/cpt-templates/post/single//assets/template.php"</b>
 
 <?php the_post_thumbnail(); ?>
 <?php the_title(); ?>

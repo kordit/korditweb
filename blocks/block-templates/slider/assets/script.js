@@ -7,6 +7,8 @@ slider.forEach(item => {
 const slider = new Splide(item, {
 rewind:true,
 type:"loop",
+perPage:"2",
+padding: { left: 10, right: 20 },
 });
 slider.mount();
 });

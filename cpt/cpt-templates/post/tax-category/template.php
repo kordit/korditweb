@@ -1,4 +1,4 @@
-/usr/home/thesuit1995/domains/brrg.ergotree.pl/public_html/wp-content/themes/ergotree/cpt/cpt-templates/post/tax-category
+/usr/home/huximo/domains/beta.huximo.pl/public_html/wp-content/themes/korditweb/cpt/cpt-templates/post/tax-category
 <div class="et-container" style="display: flex; flex-wrap: wrap; justify-content: center;">
 <?php
 

@@ -49,9 +49,9 @@ class acf_field_ulepszony_naglowek extends acf_field
 		if (empty($value) || !is_array($value) || !isset($value['heading']) || !isset($value['value'])) {
 			return '';
 		}
+		et_r($value);
 		$h = esc_html($value['heading']);
 		$c = $value['value'];
-		return "<{$h}>{$c}</{$h}>";
 	}
 }
 
@@ -245,10 +245,13 @@ function et_get_fields_acf($single_acf, $depth = 1, $classname = '')
 		include(get_template_directory() . $repeaterFile);
 	} elseif ($type == 'get_cpt_fields') {
 		$custom_post_type = $single_acf['custom_post_type'];
-		$group_ids = $single_acf['field_group_ids'];
-		$group_ids = str_replace(' ', '', $group_ids);
-		$group_ids_array = explode(",", $group_ids);
-
+		if (isset($single_acf['field_group_ids'])) {
+			$group_ids = $single_acf['field_group_ids'];
+			$group_ids = str_replace(' ', '', $group_ids);
+			$group_ids_array = explode(",", $group_ids);
+		} else {
+			$group_ids_array = [];
+		}
 		$type_field = '';
 		$type_field = '<?php' . PHP_EOL;
 		$type_field .= '$args = array(' . PHP_EOL;
@@ -270,8 +273,6 @@ function et_get_fields_acf($single_acf, $depth = 1, $classname = '')
 
 		foreach ($group_ids_array as $id_array) {
 			if (isset(acf_get_field_group($id_array)['local_file'])) {
-				// et_r(acf_get_field_group($id_array)['local_file']);
-
 				$field_url = acf_get_field_group($id_array)['local_file'];
 				$stringjson = json_decode(file_get_contents($field_url), true);
 				$fields = $stringjson['fields'];
@@ -279,9 +280,13 @@ function et_get_fields_acf($single_acf, $depth = 1, $classname = '')
 				array_push($allFields, ...$fields);
 			}
 		}
-		$selected_fields = $single_acf['selected_acf_fields'];
+		if (isset($single_acf['selected_acf_fields'])) {
+			$selected_fields = $single_acf['selected_acf_fields'];
+		} else {
+			$selected_fields = [];
+		}
 		foreach ($allFields as $single_field) {
-			if (in_array($single_field['name'], $selected_fields)) {
+			if (isset($single_field['name']) && is_array($selected_fields) && in_array($single_field['name'], $selected_fields)) {
 				$classa = isset($single_field['wrapper']['class']) && !empty($single_field['wrapper']['class'])
 					? $single_field['wrapper']['class']
 					: (!empty($name) ? $single_field['label'] . '--' . $classname . '--' . $name : '');

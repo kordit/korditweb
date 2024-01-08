@@ -3,7 +3,7 @@ $et_id = '';
 $et_background_section = '';
 $et_overlay_section = '';
 if (have_rows('ustawienia_ulozenia')) {
-        while (have_rows('ustawienia_ulozenia')) { 
+        while (have_rows('ustawienia_ulozenia')) {
                 the_row();
                 $et_id_section = get_sub_field('kotwica') ?: '';
                 $et_type_section = get_sub_field('typ_tla') ?: '';
@@ -25,4 +25,3 @@ $all_block_values = array(
         'mix_blend_mode' => $et_mix_blendmode_section,
         'type_mix_blend' => $type_mix_blend
 );
-

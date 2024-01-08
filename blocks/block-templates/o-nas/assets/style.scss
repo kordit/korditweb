@@ -1,55 +1,5 @@
-body:not(.wp-core-ui),
-html:not(.wp-toolbar),
-.acf-block-preview {
-	.o-nas {
-		margin-bottom: 80px;
-		margin-top: 80px;
+body:not(.wp-core-ui),html:not(.wp-toolbar),.acf-block-preview { 
+.o-nas {
 
-		.et-container {
-			display: flex;
-			gap: 142px;
-			justify-content: space-between;
-			align-items: center;
-			flex-wrap: wrap;
-
-			@media only screen and (max-width: 1200px) {
-				gap: 40px;
-			}
-
-			@media only screen and (max-width: 991px) {
-				flex-direction: column-reverse;
-			}
-
-			&>* {
-				width: calc(50% - 71px);
-
-				@media only screen and (max-width: 1200px) {
-					width: calc(50% - 20px);
-				}
-
-				@media only screen and (max-width: 991px) {
-					width: 100%;
-				}
-			}
-
-			.heading-2 {
-				margin-bottom: 56px;
-			}
-
-			.description {
-				strong {
-					font-weight: 600;
-
-					&.margin {
-						display: block;
-						margin-bottom: 16px;
-					}
-				}
-
-				div~div {
-					margin-top: 48px;
-				}
-			}
-		}
-	}
+}
 }
