@@ -49,9 +49,10 @@ class acf_field_ulepszony_naglowek extends acf_field
 		if (empty($value) || !is_array($value) || !isset($value['heading']) || !isset($value['value'])) {
 			return '';
 		}
-		et_r($value);
 		$h = esc_html($value['heading']);
 		$c = $value['value'];
+		$string = '<' . $h . '>' . $c . '</' . $h . '>';
+		return $string;
 	}
 }
 
