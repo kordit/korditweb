@@ -22,8 +22,9 @@ if (is_admin()) {
 
 get_template_part('/assets/includes/optimize');
 
-function my_enqueue_scripts() {
-  wp_enqueue_script('et_my-custom-acf-script', get_template_directory_uri() . '/js/my-custom-acf-script.js', array('jquery'), null, true );
+function my_enqueue_scripts()
+{
+  wp_enqueue_script('et_my-custom-acf-script', get_template_directory_uri() . '/js/my-custom-acf-script.js', array('jquery'), null, true);
 
   wp_localize_script('et2_my-custom-acf-script', 'myAjax', array('ajaxurl' => admin_url('admin-ajax.php')));
 }
@@ -60,6 +61,7 @@ if (is_admin()) {
     }
     add_action('admin_head', 'my_colors_and_fonts');
     wp_enqueue_style('global', get_template_directory_uri() . '/assets/css/global.css');
+    wp_enqueue_style('admin', get_template_directory_uri() . '/assets/css/admin.css');
     wp_enqueue_style('style', get_template_directory_uri() . '/style.css');
     wp_enqueue_style('theme-style', get_template_directory_uri() . '/theme-style.css');
   });
@@ -121,14 +123,14 @@ function et_term_link($term_link, $term, $taxonomy)
 add_filter('term_link', 'et_term_link', 10, 3);
 add_filter('wpcf7_autop_or_not', '__return_false');
 
-function acf_orphans($value, $post_id, $field) {
-  if ( class_exists( 'iworks_orphan' ) ) {
+function acf_orphans($value, $post_id, $field)
+{
+  if (class_exists('iworks_orphan')) {
     $orphan = new \iworks_orphan();
-    $value = $orphan->replace( $value );
+    $value = $orphan->replace($value);
   }
   return $value;
 }
 add_filter('acf/format_value/type=textarea', 'acf_orphans', 10, 3);
 add_filter('acf/format_value/type=wysiwyg', 'acf_orphans', 10, 3);
 add_filter('acf/format_value/type=text', 'acf_orphans', 10, 3);
-
