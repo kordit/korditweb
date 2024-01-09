@@ -1,0 +1,77 @@
+body:not(.wp-core-ui),
+html:not(.wp-toolbar),
+.acf-block-preview {
+    .grafika-z-trescia-z-tabami {
+        .top {
+            .et-container {
+                display: flex;
+                gap: 16px;
+                flex-wrap: wrap;
+
+                .heading-2 {
+                    margin-bottom: 32px;
+                    padding-right: 16px;
+                }
+
+                .navigation {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 16px;
+
+                    .single-navi {
+                        &.active {
+                            &>div {
+                                background-color: var(--c1);
+                            }
+                        }
+                    }
+                }
+
+                .bigger-custom {
+                    margin-bottom: 32px;
+                    padding-right: 64px;
+                }
+
+                &>* {
+                    width: calc(50% - 16px);
+                }
+            }
+        }
+
+        .bottom {
+            background-color: var(--c3);
+            color: #fff;
+            padding: 32px 0px;
+            align-items: start;
+            margin-top: 64px;
+
+            .heading-2 {
+                margin-bottom: 16px;
+            }
+
+            .grafika-z-trescia-z-tabami--dodaj_linki {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 16px;
+                align-items: start;
+                justify-content: start;
+            }
+
+            .single-tab {
+                display: flex;
+                align-items: start;
+                gap: 32px;
+                display: none;
+
+                &.active {
+                    display: flex;
+
+                }
+
+                &>* {
+                    width: calc(50% - 16px);
+                }
+            }
+        }
+    }
+}

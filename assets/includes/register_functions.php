@@ -304,7 +304,6 @@ function et_get_fields_acf($single_acf, $depth = 1, $classname = '')
 	} else {
 		$type_field = generate_field_html($type, $name, $classa, $single_acf, $get_field, $field);
 	}
-
 	return $type_field;
 }
 
@@ -315,6 +314,8 @@ function get_repeater_file($library)
 			return '/assets/includes/file_configurator/splide-repeater.php';
 		case 2:
 			return '/assets/includes/file_configurator/accordion-repeater.php';
+		case 3:
+			return '/assets/includes/file_configurator/tab-repeater.php';
 		default:
 			return '/assets/includes/file_configurator/default-repeater.php';
 	}
@@ -382,6 +383,55 @@ function et_get_fields_js($typejs, $classname = '', $slug = '')
 		$datajs .= 'el[0].querySelector(".' . $slug . '").classList.add("block-js-added");' . PHP_EOL;
 		$datajs .= '}' . PHP_EOL;
 		$datajs .= '});' . PHP_EOL;
+		$datajs .= '}' . PHP_EOL;
+		$datajs .= '/* -- Admin JS END -- */' . PHP_EOL;
+	}
+	if ($typejs == 3) {
+		$slugrp = str_replace('-', '_', $slug);
+		$slugrpCap = $slugrp;
+		$datajs = '';
+		$datajs .= '/* eslint-disable no-unused-vars */' . PHP_EOL;
+		$datajs .= 'function init' . $slugrpCap . '(element = document) {' . PHP_EOL;
+		$datajs .= '    const navItems = element.querySelectorAll( ".' . $slug . ' .single-navi" );' . PHP_EOL;
+		$datajs .= '    const tabs = element.querySelectorAll(".' . $slug . ' .single-tab" );' . PHP_EOL;
+		$datajs .= '' . PHP_EOL;
+		$datajs .= '    if (navItems.length > 0 && tabs.length > 0) {' . PHP_EOL;
+		$datajs .= '        navItems[0].classList.add(\'active\');' . PHP_EOL;
+		$datajs .= '        tabs[0].classList.add(\'active\');' . PHP_EOL;
+		$datajs .= '    }' . PHP_EOL;
+		$datajs .= '' . PHP_EOL;
+		$datajs .= '    navItems.forEach(function (nav) {' . PHP_EOL;
+		$datajs .= '        nav.addEventListener(\'click\', function () {' . PHP_EOL;
+		$datajs .= '            navItems.forEach(function (navItem) {' . PHP_EOL;
+		$datajs .= '                navItem.classList.remove(\'active\');' . PHP_EOL;
+		$datajs .= '            });' . PHP_EOL;
+		$datajs .= '' . PHP_EOL;
+		$datajs .= '            this.classList.add(\'active\');' . PHP_EOL;
+		$datajs .= '            var targetId = this.getAttribute(\'data-template\');' . PHP_EOL;
+		$datajs .= '            tabs.forEach(function (tab) {' . PHP_EOL;
+		$datajs .= '                tab.classList.remove(\'active\');' . PHP_EOL;
+		$datajs .= '            });' . PHP_EOL;
+		$datajs .= '' . PHP_EOL;
+		$datajs .= '            var targetTab = element.getElementById(targetId);' . PHP_EOL;
+		$datajs .= '            if (targetTab) {' . PHP_EOL;
+		$datajs .= '                targetTab.classList.add(\'active\');' . PHP_EOL;
+		$datajs .= '            }' . PHP_EOL;
+		$datajs .= '        });' . PHP_EOL;
+		$datajs .= '    });' . PHP_EOL;
+		$datajs .= '};' . PHP_EOL;
+		$datajs .= '' . PHP_EOL;
+		$datajs .= 'document.addEventListener("DOMContentLoaded", () => {' . PHP_EOL;
+		$datajs .= '    init' . $slugrpCap . '();' . PHP_EOL;
+		$datajs .= '});' . PHP_EOL;
+		$datajs .= '' . PHP_EOL;
+		$datajs .= '/* -- Admin JS START -- */' . PHP_EOL;
+		$datajs .= 'if(window.acf){' . PHP_EOL;
+		$datajs .= '    window.acf.addAction("render_block_preview/type=' . $slug . '", (el) => {' . PHP_EOL;
+		$datajs .= '        if(!!el[0].querySelector(".' . $slug . '") && !el[0].querySelector(".' . $slug . '").classList.contains("block-js-added")){' . PHP_EOL;
+		$datajs .= '            init' . $slugrpCap . '(el[0]);' . PHP_EOL;
+		$datajs .= '            el[0].querySelector(".' . $slug . '").classList.add("block-js-added");' . PHP_EOL;
+		$datajs .= '        }' . PHP_EOL;
+		$datajs .= '    });' . PHP_EOL;
 		$datajs .= '}' . PHP_EOL;
 		$datajs .= '/* -- Admin JS END -- */' . PHP_EOL;
 	}

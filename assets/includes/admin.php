@@ -200,8 +200,7 @@ function my_repeater_render_field_settings($field)
 			0 => 'Domyślny',
 			1 => 'Splide slider',
 			2 => 'Accordion',
-			3 => 'Collapse',
-			4 => 'Tab',
+			3 => 'Tab',
 		),
 
 	));

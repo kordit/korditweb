@@ -94,7 +94,12 @@ function write_acf_template_files($singleacf, $render_template_create, $slug)
 			foreach ($all_js as $single_js) {
 				$name = $single_js['name'];
 				$type = $single_js['type'];
-				$all_code_js .= et_get_fields_js($type, 'splide_' . $name, $slug);
+				if ($type == 1) {
+					$temp = 'splide_';
+				} else {
+					$temp = 'tab_';
+				}
+				$all_code_js .= et_get_fields_js($type, $temp . $name, $slug);
 				if (!in_array($type, $active_num_library)) {
 					$active_num_library[] = $type;
 				}
