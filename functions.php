@@ -131,3 +131,4 @@ function acf_orphans($value, $post_id, $field) {
 add_filter('acf/format_value/type=textarea', 'acf_orphans', 10, 3);
 add_filter('acf/format_value/type=wysiwyg', 'acf_orphans', 10, 3);
 add_filter('acf/format_value/type=text', 'acf_orphans', 10, 3);
+
