@@ -30,7 +30,7 @@
                 <div class="desc">
                     <?php the_excerpt(); ?>
                 </div>
-                <a href="<?php the_permalink(); ?>" class="btn-theme">Czytaj więcej</a>
+                <a href="<?php the_permalink(); ?>" class="btn-rounded">Czytaj więcej</a>
             </div>
     <?php
         endwhile;

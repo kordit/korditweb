@@ -1,7 +1,7 @@
-# blocks/block-templates/*
-# !blocks/block-templates/.keep
-# cpt/cpt-templates/*
-# !cpt/cpt-templates/.keep
+blocks/block-templates/*
+!blocks/block-templates/.keep
+cpt/cpt-templates/*
+!cpt/cpt-templates/.keep
 patterns/*
 !patterns/.keep
 .DS_Store

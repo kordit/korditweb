@@ -177,12 +177,16 @@ html:not(.wp-toolbar),
 
       li {
         button {
-          background-color: var(--c1);
+          background-color: rgba(208, 213, 221, 1);
           width: 16px;
           height: 16px;
           display: block;
           border: none;
           border-radius: 100%;
+
+          &.is-active {
+            background-color: var(--c1);
+          }
         }
       }
     }
