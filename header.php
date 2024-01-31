@@ -8,9 +8,6 @@
   <style type="text/css">
     <?php include('templates/header/config.php'); ?>
   </style>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
   <?php wp_head(); ?>
 </head>
 
@@ -32,16 +29,8 @@
     <?php include('templates/header/template.php'); ?>
   </header>
 
-  <?php if (!is_front_page() && !is_single()) : ?>
+  <?php if (!is_front_page()) : ?>
     <div class="section-title">
       <?php the_title(); ?>
     </div>
   <?php endif ?>
-  <?php
-  $key = "group_659ac7b62eab2"; // Przykładowy klucz grupy pól
-  $field_group = acf_get_field_group($key);
-
-  if ($field_group) {
-    // print_r($field_group['local_file']);
-  }
-  ?>
