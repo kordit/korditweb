@@ -29,12 +29,12 @@ html:not(.wp-toolbar),
   }
 
   * {
-    font-family: var(--ffont);
+    font-family: var(--f1);
   }
 
   .heading-1,
   .heading-1 * {
-    font-family: var(--sfont);
+    font-family: var(--f2);
     font-size: 56px;
     font-weight: 400;
     line-height: 64px;
@@ -42,7 +42,7 @@ html:not(.wp-toolbar),
 
   .heading-2,
   .heading-2 * {
-    font-family: var(--sfont);
+    font-family: var(--f2);
     font-size: 48px;
     line-height: 56px;
     font-weight: 400;
@@ -50,7 +50,7 @@ html:not(.wp-toolbar),
 
   .heading-3,
   .heading-3 * {
-    font-family: var(--sfont);
+    font-family: var(--f2);
     font-size: 36px;
     line-height: 44px;
     font-weight: 400;
@@ -58,7 +58,7 @@ html:not(.wp-toolbar),
 
   .heading-4,
   .heading-4 * {
-    font-family: var(--sfont);
+    font-family: var(--f2);
     font-size: 24px;
     line-height: 32px;
     font-weight: 400;
@@ -66,7 +66,7 @@ html:not(.wp-toolbar),
 
   .heading-5,
   .heading-5 * {
-    font-family: var(--sfont);
+    font-family: var(--f2);
     font-size: 24px;
     line-height: 32px;
     font-weight: 400;
@@ -74,7 +74,7 @@ html:not(.wp-toolbar),
 
   .heading-6,
   .heading-6 * {
-    font-family: var(--sfont);
+    font-family: var(--f2);
     font-size: 18px;
     line-height: 28px;
     font-weight: 400;
@@ -107,7 +107,7 @@ html:not(.wp-toolbar),
 
   .desc,
   .desc * {
-    font-family: var(--sfont);
+    font-family: var(--f2);
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
@@ -116,48 +116,6 @@ html:not(.wp-toolbar),
       font-size: 20px;
       line-height: 32px;
     }
-  }
-
-  .btn-rounded {
-    display: inline-block;
-    background-color: var(--c2);
-    text-align: center;
-    font-size: 18px;
-    font-weight: 400;
-    color: #fff;
-    padding: 4px 16px;
-    line-height: 24px;
-    text-transform: uppercase;
-    border-radius: 32px;
-    text-decoration: none;
-    cursor: pointer;
-    transition-duration: .5s;
-
-    &:hover {
-      background-color: var(--c1);
-    }
-  }
-
-  a.btn-round {
-    display: inline-block;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 18px;
-    font-family: var(--ffont);
-    padding: 8px 32px;
-    border-radius: 32px;
-
-    &.white {
-      border: solid 1px #fff;
-    }
-  }
-
-  .bigger-custom,
-  .bigger-custom * {
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 32px;
-    font-family: var(--sfont);
   }
 
   .white {
@@ -220,7 +178,7 @@ html:not(.wp-toolbar),
   }
 
   .btn-theme {
-    font-family: var(--sfont);
+    font-family: var(--f2);
     font-weight: 600;
     color: #fff;
     letter-spacing: 1px;
@@ -246,39 +204,6 @@ html:not(.wp-toolbar),
       background-position: center;
       background-repeat: no-repeat;
       background-size: contain;
-    }
-  }
-
-  .rounded-btn {
-    font-family: var(--ffont);
-    font-weight: 700;
-    color: #fff;
-    padding: 16px 24px;
-    display: inline-flex;
-    align-items: center;
-    border-radius: 32px;
-    gap: 16px;
-    text-decoration: none;
-    background-color: var(--c1);
-    transition-duration: .5s;
-
-    &:hover {
-      background-color: var(--c2);
-
-      &:before {
-        background-color: var(--c1);
-      }
-
-    }
-
-    &:before {
-      content: "";
-      background-color: var(--c2);
-      width: 23px;
-      height: 23px;
-      display: block;
-      transform: rotate(45deg);
-      transition-duration: .5s;
     }
   }
 

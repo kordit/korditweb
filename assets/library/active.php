@@ -13,7 +13,6 @@ et_lib_accordion(false);
 if (!is_admin()) {
 	et_lib_aos(false);
 }
-et_lib_grid(false);
 et_lib_halka(false);
 et_lib_lottie(false);
 et_lib_masonary(false);

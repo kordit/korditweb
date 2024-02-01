@@ -1,70 +1,70 @@
+/* jura-regular - latin_latin-ext */
 @font-face {
 	font-display: swap;
 	/* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-	font-family: 'Open Sans';
+	font-family: 'Jura';
 	font-style: normal;
 	font-weight: 400;
-	src: url('open-sans-v40-latin_latin-ext-regular.woff2') format('woff2');
+	src: url('jura-v31-latin_latin-ext-regular.woff2') format('woff2');
 	/* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
-/* open-sans-500 - latin_latin-ext */
+/* jura-500 - latin_latin-ext */
 @font-face {
 	font-display: swap;
 	/* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-	font-family: 'Open Sans';
+	font-family: 'Jura';
 	font-style: normal;
 	font-weight: 500;
-	src: url('open-sans-v40-latin_latin-ext-500.woff2') format('woff2');
+	src: url('jura-v31-latin_latin-ext-500.woff2') format('woff2');
 	/* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
-/* open-sans-700 - latin_latin-ext */
+/* jura-700 - latin_latin-ext */
 @font-face {
 	font-display: swap;
 	/* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-	font-family: 'Open Sans';
+	font-family: 'Jura';
 	font-style: normal;
 	font-weight: 700;
-	src: url('open-sans-v40-latin_latin-ext-700.woff2') format('woff2');
+	src: url('jura-v31-latin_latin-ext-700.woff2') format('woff2');
 	/* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
-/* arsenal-regular - latin_latin-ext */
+/* noto-sans-regular - latin_latin-ext */
 @font-face {
 	font-display: swap;
 	/* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-	font-family: 'Optima';
+	font-family: 'Noto Sans';
 	font-style: normal;
 	font-weight: 400;
-	src: url('regular.woff2') format('woff2');
+	src: url('noto-sans-v35-latin_latin-ext-regular.woff2') format('woff2');
 	/* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
-/* arsenal-700 - latin_latin-ext */
+/* noto-sans-500 - latin_latin-ext */
 @font-face {
 	font-display: swap;
 	/* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-	font-family: 'Optima';
-	font-style: normal;
-	font-weight: 700;
-	src: url('bold.woff2') format('woff2');
-	/* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-
-@font-face {
-	font-display: swap;
-	/* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-	font-family: 'Optima';
+	font-family: 'Noto Sans';
 	font-style: normal;
 	font-weight: 500;
-	src: url('medium.woff2') format('woff2');
+	src: url('noto-sans-v35-latin_latin-ext-500.woff2') format('woff2');
+	/* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* noto-sans-700 - latin_latin-ext */
+@font-face {
+	font-display: swap;
+	/* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+	font-family: 'Noto Sans';
+	font-style: normal;
+	font-weight: 700;
+	src: url('noto-sans-v35-latin_latin-ext-700.woff2') format('woff2');
 	/* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 :root {
-	--ffont: 'Open Sans', sans-serif;
-	--sfont: 'Optima', serif;
+	--f1: 'Noto Sans', sans-serif;
+	--f2: 'Jura', sans-serif;
 }
-
-/* open-sans-regular - latin_latin-ext */

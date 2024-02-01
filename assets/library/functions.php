@@ -14,10 +14,10 @@ function et_lib_aos($flag)
 		add_css_theme('aos', '/assets/library/aos/aos.css');
 	}
 }
-function et_lib_grid($flag)
+function et_lib_walkway($flag)
 {
 	if ($flag == true) {
-		add_css_theme('grid', '/assets/library/grid/grid.css');
+		add_js_theme('walkway', '/assets/library/walkway/walkway.js');
 	}
 }
 function et_lib_halka($flag)
