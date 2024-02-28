@@ -323,7 +323,7 @@ function et_start_section($all_values)
 		// Wideo
 		$video_style = $all_values['type_mix_blend'] == 'video_image' ? $mix_blend_mode_style : '';
 		$poster_attr = (!empty($all_values['poster'])) ? 'poster="' . $all_values['poster'] . '"' : '';
-		echo '<div class="video-wrapper ' . $type_mix_blend_mode_class . '"><video ' . $poster_attr . ' style="' . $video_style . '" src="' . $all_values['video_url'] . '" playsinline loop muted></video>';
+		echo '<div class="video-wrapper ' . $type_mix_blend_mode_class . '"><video ' . $poster_attr . ' style="' . $video_style . '" src="' . $all_values['video_url'] . '" playsinline autoplay loop muted></video>';
 		if (!empty($all_values['overlay'])) {
 			$overlay_style = $all_values['type_mix_blend'] == 'overlay' ? $mix_blend_mode_style : '';
 			echo '<div style="' . $hex_style . $overlay_style . '"></div>'; // Nakładka dla wideo

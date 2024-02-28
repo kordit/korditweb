@@ -365,7 +365,10 @@ function et_get_fields_js($typejs, $classname = '', $slug = '')
 		$datajs .= 'rewind:true,' . PHP_EOL;
 		$datajs .= 'type:"loop",' . PHP_EOL;
 		$datajs .= 'perPage:"2",' . PHP_EOL;
-		$datajs .= 'padding: { left: 10, right: 20 },' . PHP_EOL;
+		$datajs .= 'arrows:false,' . PHP_EOL;
+		$datajs .= 'pagination:false,' . PHP_EOL;
+		$datajs .= 'updateOnMove:true,' . PHP_EOL;
+		$datajs .= 'padding: { left: "1rem", right: "2rem" },' . PHP_EOL;
 		$datajs .= '});' . PHP_EOL;
 		$datajs .= 'slider.mount();' . PHP_EOL;
 		$datajs .= '});' . PHP_EOL;
