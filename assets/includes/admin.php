@@ -207,6 +207,20 @@ function my_repeater_render_field_settings($field)
 }
 add_filter('acf/validate_value/type=repeater', 'acf_addons_library', 10, 4);
 
+function my_custom_link_field_settings($field)
+{
+	// Dodajemy pole dla URL obrazka - to jest tylko przykładowy kod i nie zadziała bezpośrednio w ACF
+	acf_render_field_setting($field, array(
+		'label'         => __('URL obrazka'),
+		'instructions'  => __('Wklej URL obrazka, który ma być powiązany z tym linkiem.'),
+		'name'          => 'image_url', // Teoretyczna nazwa nowego pola
+		'type'          => 'text',
+		'ui'            => 1,
+	));
+}
+add_action('acf/render_field_settings/type=link', 'my_custom_link_field_settings');
+
+
 function acf_addons_library($valid, $value, $field, $input)
 {
 	if (!$valid) return $valid;

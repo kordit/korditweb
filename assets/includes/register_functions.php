@@ -441,3 +441,34 @@ function et_get_fields_js($typejs, $classname = '', $slug = '')
 	}
 	return $datajs;
 }
+
+function et_options_fields()
+{
+	// Pobierz wszystkie grupy pól
+	$grupy_pol = acf_get_field_groups();
+	$wszystkie_opcje = array();
+
+	foreach ($grupy_pol as $grupa) {
+		// Sprawdź lokalizację dla każdej grupy pól
+		if (!empty($grupa['location'])) {
+			foreach ($grupa['location'] as $lokalizacja_grupy) {
+				foreach ($lokalizacja_grupy as $lokalizacja) {
+					// Sprawdź, czy lokalizacja grupy wskazuje na 'opcje'
+					if ($lokalizacja['param'] == 'options_page') {
+						// Pobierz pola dla tej grupy
+						$pola = acf_get_fields($grupa['key']);
+						foreach ($pola as $pole) {
+							// Pobierz i zapisz wartość pola
+							$wartosc = get_field($pole['name'], 'option');
+							if (!empty($wartosc)) {
+								$wszystkie_opcje[$pole['name']] = $wartosc;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	return $wszystkie_opcje;
+}

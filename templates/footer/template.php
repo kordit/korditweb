@@ -1,17 +1,5 @@
-<?php 
-$phone = get_field( 'telefon', 'options' );
-if ($phone) {
-  $phone_label = $phone['url'];
-  $phone_tel = $phone['title'];
-}
-else {
-  $phone_label = '';
-  $phone_tel = '';
-}
-$mail = get_field( 'mail', 'options' );
-$adress = get_field( 'adres', 'options' );
-$facebook = get_field( 'url_facebook', 'options' );
-$instagram = get_field( 'url_instagram', 'options' );
+<?php $options_fields = et_options_fields();
+et_r($options_fields);
 ?>
 
 <div class="et-container">
@@ -20,22 +8,22 @@ $instagram = get_field( 'url_instagram', 'options' );
       <?php et_the_logo(); ?>
     </div>
     <div class="desc">
-      <?php the_field( 'podpis_w_footerze', 'options' ); ?>
+      <?php the_field('podpis_w_footerze', 'options'); ?>
     </div>
-    <?php if ($instagram || $facebook): ?>
+    <?php if ($options_fields['url_facebook'] || $options_fields['url_instagram']) : ?>
 
 
       <ul class="social-media">
-        <?php if ($facebook): ?>
+        <?php if ($options_fields['url_facebook']) : ?>
           <li>
-            <a target="_blank" href="<?php the_field( 'facebook', 'options' ); ?>">
+            <a target="_blank" href="<?= $options_fields['url_facebook']; ?>">
               <?php et_svg('wp-content/themes/korditweb/assets/img/facebook.svg'); ?>
             </a>
           </li>
         <?php endif ?>
-        <?php if ($instagram): ?>
+        <?php if ($options_fields['url_instagram']) : ?>
           <li>
-            <a target="_blank" href="<?php the_field( 'instagram', 'options' ); ?>">
+            <a target="_blank" href="<?= $options_fields['url_instagram']; ?>">
               <?php et_svg('wp-content/themes/korditweb/assets/img/instagram.svg'); ?>
             </a>
           </li>
@@ -63,23 +51,28 @@ $instagram = get_field( 'url_instagram', 'options' );
   <div class="single-footer">
     <h3 class="heading-3 color-white">
       Dane kontaktowe
+
     </h3>
-    <?php if ($phone): ?>
-      <div class="single-item-contact">
-        <?php et_svg('wp-content/themes/korditweb/assets/img/phone.svg'); ?>
-        <a href="tel:<?= $phone_label; ?>"><?= $phone_tel; ?></a>
-      </div>
+    <?php
+    ?>
+    <?php if ($options_fields['lista_telefonow']) : ?>
+      <?php foreach ($options_fields['lista_telefonow'] as $var => $phone) : ?>
+        <div class="single-item-contact">
+          <?php et_svg('wp-content/themes/korditweb/assets/img/phone.svg'); ?>
+          <a href="tel:<?= $phone['telefon']['url']; ?>"><?= $phone['telefon']['title']; ?></a>
+        </div>
+      <?php endforeach; ?>
     <?php endif ?>
-    <?php if ($mail): ?>
+    <?php foreach ($options_fields['lista_maili'] as $mail) : ?>
       <div class="single-item-contact">
         <?php et_svg('wp-content/themes/korditweb/assets/img/mail.svg'); ?>
-        <a href="mailto:<?= $mail; ?>"><?= $mail; ?></a>
+        <a href="mailto::<?= $mail['mail']; ?>"><?= $mail['mail']; ?></a>
       </div>
-    <?php endif ?>
-    <?php if ($adress): ?>
+    <?php endforeach; ?>
+    <?php if ($options_fields['adres']) : ?>
       <div class="single-item-contact">
         <?php et_svg('wp-content/themes/korditweb/assets/img/adress.svg'); ?>
-        <span><?= $adress; ?></span>
+        <span><?= $options_fields['adres']; ?></span>
       </div>
     <?php endif ?>
   </div>
