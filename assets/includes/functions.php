@@ -4,8 +4,9 @@
 ///////   CORE FUNCTIONS   //////////
 /////////////////////////////////////
 
-function et_r($var, $is_admin = false) {
-	if($is_admin == "debug") {
+function et_r($var, $is_admin = false)
+{
+	if ($is_admin == "debug") {
 		foreach ($var as $single => $key) {
 			if ($single !== 'defined_vars') {
 				echo '<pre>' . $single . ": ";
@@ -13,13 +14,11 @@ function et_r($var, $is_admin = false) {
 				echo '</pre>';
 			}
 		}
-	}
-	elseif (!is_admin()) {
+	} elseif (!is_admin()) {
 		echo '<pre>';
 		print_r($var);
 		echo '</pre>';
-	}
-	else {
+	} else {
 		if ($is_admin == true) {
 			echo '<pre>';
 			if ($var) {
@@ -66,7 +65,7 @@ function et_thumbnail($thumbnail_id, $size)
 	}
 }
 
-function et_link($link, $class = "", $title = "")
+function et_link($link, $class = "", $title = "", $image_url = "")
 {
 	if (get_field($link) || get_sub_field($link) || get_sub_field($link, "options") || get_field($link, "options")) {
 		if (get_field($link)) {
@@ -89,10 +88,23 @@ function et_link($link, $class = "", $title = "")
 		} else {
 			$classname = "";
 		}
-		$title = 'title="' . $title . '" ';
-		echo '<a ' . $title . ' ' . $blank . $classname . ' href="' . $button["url"] . '">' . $button["title"] . '</a>';
+		if ($title) {
+			$title = 'title="' . $title . '" ';
+		} else {
+			$title = "";
+		}
+
+		if (strpos($image_url, "/") !== false) {
+			// Jest to pełny URL
+			$image_html = $image_url ? '<img src="' . $image_url . '" alt="' . esc_attr($button["title"]) . '" />' : '';
+		} else {
+			// Zakładamy, że jest to nazwa pliku, konstruujemy pełny URL
+			$image_html = $image_url ? '<img src="' . get_template_directory_uri() . '/assets/img/' . $image_url . '.svg" alt="' . esc_attr($button["title"]) . '" />' : '';
+		}
+		echo '<a ' . $title . ' ' . $blank . $classname . ' href="' . $button["url"] . '">' . $image_html . $button["title"] . '</a>';
 	}
 }
+
 function et_theme_pagination_query($post_query)
 {
 	echo paginate_links(array(
@@ -129,7 +141,7 @@ function et_svg($linksvg, $type = 0)
 				$svg_file_new = substr($svg_file, $position);
 				echo $svg_file_new;
 			}
-		} 
+		}
 	}
 }
 
@@ -159,7 +171,7 @@ function et_get_svg($linksvg, $type = 0)
 				$svg_file_new = substr($svg_file, $position);
 				return $svg_file_new;
 			}
-		} 
+		}
 	}
 }
 
@@ -185,8 +197,7 @@ function et_image($acffield, $size = "full", $url = false, $class = '')
 
 		if ($url == true) {
 			return $webimage;
-		}
-		else {
+		} else {
 			$pieces = explode("/", $webimage);
 			$pathend = end($pieces);
 			$newstring = substr($pathend, -3);
@@ -196,7 +207,7 @@ function et_image($acffield, $size = "full", $url = false, $class = '')
 			} elseif ($newstring == 'svg') {
 				$webimage = preg_replace('/https?\:\/\/[^\/]*\//', '', $webimage);
 				echo et_get_svg($webimage);
-			} 
+			}
 		}
 	}
 }
@@ -252,7 +263,7 @@ function et_the_logo($width = "350px", $height = "100px", $class = "header")
 			et_svg($logo);
 			echo '
 			<style>'
-			. $class . ' .logo svg {
+				. $class . ' .logo svg {
 				width: ' . $width . ';
 				height: auto;
 			}
@@ -272,66 +283,73 @@ function et_form($id_form)
 	$shortcut = '[contact-form-7 id="' . $id_form . '"]';
 	return do_shortcode($shortcut);
 }
-function et_start_section($all_values) {
-    // Pobieranie zmiennych
+function et_start_section($all_values)
+{
+	// Pobieranie zmiennych
 	$vars = $all_values['defined_vars'];
 	foreach ($vars as $var => $val) {
-        $$var = $val; // Dynamiczne przypisanie wartości do zmiennych
-    }
+		$$var = $val; // Dynamiczne przypisanie wartości do zmiennych
+	}
 
-    // Przetwarzanie ID sekcji
-    $section_id = (!empty($all_values['id_section'])) ? 'id="' . $all_values['id_section'] . '" ' : "";
+	// Przetwarzanie ID sekcji
+	$section_id = (!empty($all_values['id_section'])) ? 'id="' . $all_values['id_section'] . '" ' : "";
 
-    // Ustawianie koloru nakładki
-    $hex_style = (!empty($all_values['overlay'])) ? 'background-color:' . $all_values['overlay'] . ';' : "";
+	// Ustawianie koloru nakładki
+	$hex_style = (!empty($all_values['overlay'])) ? 'background-color:' . $all_values['overlay'] . ';' : "";
 
-    // Ustawianie mix-blend-mode
-    $mix_blend_mode_style = (!empty($all_values['mix_blend_mode'])) ? 'mix-blend-mode:' . $all_values['mix_blend_mode'] . ';' : "";
+	// Ustawianie mix-blend-mode
+	$mix_blend_mode_style = (!empty($all_values['mix_blend_mode'])) ? 'mix-blend-mode:' . $all_values['mix_blend_mode'] . ';' : "";
 
-    // Ustawianie dodatkowych klas
-    $additional_class = (!empty($block['className'])) ? ' ' . $block['className'] : "";
+	// Ustawianie dodatkowych klas
+	$additional_class = (!empty($block['className'])) ? ' ' . $block['className'] : "";
 
-    // Dodawanie klasy dla type_mix_blend_mode
-    $type_mix_blend_mode_class = !empty($all_values['type_mix_blend']) ? 'mix-blend-' . $all_values['type_mix_blend'] : '';
+	// Dodawanie klasy dla type_mix_blend_mode
+	$type_mix_blend_mode_class = !empty($all_values['type_mix_blend']) ? 'mix-blend-' . $all_values['type_mix_blend'] : '';
 
-    // Rozpoczęcie sekcji
-    echo '<section class="' . $all_values['name_src'] . ' ' . $all_values['name_src'] . '__' . $all_values['counter_section'] . $additional_class . '"' . $section_id . '>';
+	// Rozpoczęcie sekcji
+	echo '<section class="' . $all_values['name_src'] . ' ' . $all_values['name_src'] . '__' . $all_values['counter_section'] . $additional_class . '"' . $section_id . '>';
 
-    // Ustawienie tła lub wideo
-    if ($all_values['type'] == 1 && !empty($all_values['background_image'])) {
-        // Tło jako obraz
-    	$bg_img_style = $all_values['type_mix_blend'] == 'video_image' ? $mix_blend_mode_style : '';
-    	echo '<div class="background-wrapper ' . $type_mix_blend_mode_class . '"><img src="' . $all_values['background_image'] . '" style="' . $bg_img_style . '">';
-    	if (!empty($all_values['overlay'])) {
-    		$overlay_style = $all_values['type_mix_blend'] == 'overlay' ? $mix_blend_mode_style : '';
-            echo '<div style="' . $hex_style . $overlay_style . '"></div>'; // Nakładka dla tła
-        }
-        echo '</div>';
-    } elseif ($all_values['type'] == 2 && !empty($all_values['video_url'])) {
-        // Wideo
-    	$video_style = $all_values['type_mix_blend'] == 'video_image' ? $mix_blend_mode_style : '';
-    	$poster_attr = (!empty($all_values['poster'])) ? 'poster="' . $all_values['poster'] . '"' : '';
-    	echo '<div class="video-wrapper ' . $type_mix_blend_mode_class . '"><video ' . $poster_attr . ' style="' . $video_style . '" src="' . $all_values['video_url'] . '" autoplay loop muted></video>';
-    	if (!empty($all_values['overlay'])) {
-    		$overlay_style = $all_values['type_mix_blend'] == 'overlay' ? $mix_blend_mode_style : '';
-            echo '<div style="' . $hex_style . $overlay_style . '"></div>'; // Nakładka dla wideo
-        }
-        echo '</div>';
-    }
+	// Ustawienie tła lub wideo
+	if ($all_values['type'] == 1 && !empty($all_values['background_image'])) {
+		// Tło jako obraz
+		$bg_img_style = $all_values['type_mix_blend'] == 'video_image' ? $mix_blend_mode_style : '';
+		echo '<div class="background-wrapper ' . $type_mix_blend_mode_class . '"><img src="' . $all_values['background_image'] . '" style="' . $bg_img_style . '">';
+		if (!empty($all_values['overlay'])) {
+			$overlay_style = $all_values['type_mix_blend'] == 'overlay' ? $mix_blend_mode_style : '';
+			echo '<div style="' . $hex_style . $overlay_style . '"></div>'; // Nakładka dla tła
+		}
+		echo '</div>';
+	} elseif ($all_values['type'] == 2 && !empty($all_values['video_url'])) {
+		// Wideo
+		$video_style = $all_values['type_mix_blend'] == 'video_image' ? $mix_blend_mode_style : '';
+		$poster_attr = (!empty($all_values['poster'])) ? 'poster="' . $all_values['poster'] . '"' : '';
+		echo '<div class="video-wrapper ' . $type_mix_blend_mode_class . '"><video ' . $poster_attr . ' style="' . $video_style . '" src="' . $all_values['video_url'] . '" playsinline loop muted></video>';
+		if (!empty($all_values['overlay'])) {
+			$overlay_style = $all_values['type_mix_blend'] == 'overlay' ? $mix_blend_mode_style : '';
+			echo '<div style="' . $hex_style . $overlay_style . '"></div>'; // Nakładka dla wideo
+		}
+		echo '</div>';
+	} else {
+		// Brak tła
+		if (!empty($all_values['overlay'])) {
+			$overlay_style = $all_values['type_mix_blend'] == 'overlay' ? $mix_blend_mode_style : '';
+			echo '<div class="background-section-generate" style="' . $hex_style . $overlay_style . '"></div>'; // Nakładka dla braku tła
+		}
+	}
 
-    // Zawartość kontenera
-    if (!empty($all_values['container'])) {
-    	echo '<div class="' . $all_values['container'] . '">';
-    }
+	// Zawartość kontenera
+	if (!empty($all_values['container'])) {
+		echo '<div class="' . $all_values['container'] . '">';
+	}
 
-    // Dołączanie szablonu
-    include($all_values['srctemplate']);
+	// Dołączanie szablonu
+	include($all_values['srctemplate']);
 
-    if (!empty($all_values['container'])) {
-        echo '</div>'; // Zamknięcie kontenera
-    }
+	if (!empty($all_values['container'])) {
+		echo '</div>'; // Zamknięcie kontenera
+	}
 
-    echo "</section>"; // Zamknięcie sekcji
+	echo "</section>"; // Zamknięcie sekcji
 }
 
 

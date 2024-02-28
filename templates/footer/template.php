@@ -1,6 +1,4 @@
-<?php $options_fields = et_options_fields();
-et_r($options_fields);
-?>
+<?php $options_fields = et_options_fields(); ?>
 
 <div class="et-container">
   <div class="single-footer">
@@ -51,7 +49,6 @@ et_r($options_fields);
   <div class="single-footer">
     <h3 class="heading-3 color-white">
       Dane kontaktowe
-
     </h3>
     <?php
     ?>

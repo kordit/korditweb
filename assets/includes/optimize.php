@@ -292,3 +292,20 @@ function disable_comments_post_types_support()
 	}
 }
 add_action('admin_init', 'disable_comments_post_types_support');
+
+add_filter('allowed_block_types_all', 'inv_allowed_block_types', 25, 2);
+function inv_allowed_block_types($allowed_blocks, $editor_context)
+{
+	$basic_blocks = array(
+		'core/image',
+		'core/paragraph',
+		'core/heading',
+		'core/list',
+		'core/list-item',
+		'core/spacer',
+		'core/group',
+	);
+	$acf_blocks = acf_get_block_types();
+	$allowed_blocks = array_merge($basic_blocks, array_keys($acf_blocks));
+	return $allowed_blocks;
+}
