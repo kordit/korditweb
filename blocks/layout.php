@@ -1,7 +1,12 @@
 <?php
-$et_id = '';
+$et_id_section = '';
+$et_type_section = '';
 $et_background_section = '';
+$et_poster_section = '';
+$et_video_section = '';
 $et_overlay_section = '';
+$et_mix_blendmode_section = '';
+$type_mix_blend = '';
 if (have_rows('ustawienia_ulozenia')) {
         while (have_rows('ustawienia_ulozenia')) {
                 the_row();

@@ -1,4 +1,135 @@
 <?php
+class acf_field_ulepszony_video extends acf_field
+{
+
+	function __construct()
+	{
+		$this->name = 'ulepszony_video';
+		$this->label = __('Video', 'acf');
+		$this->category = 'content'; // Można zmienić kategorię zależnie od potrzeb
+		$this->defaults = array(
+			// Domyślne wartości dla ustawień pola, jeśli są potrzebne
+		);
+
+		parent::__construct();
+	}
+
+	function render_field($field)
+	{
+		// Renderowanie HTML dla pola w panelu administracyjnym ACF
+
+
+		// Checkboxy
+		$autoplay = isset($field['value']['autoplay']) ? 'checked' : '';
+		$muted = isset($field['value']['muted']) ? 'checked' : '';
+		$controls = isset($field['value']['controls']) ? 'checked' : '';
+		$loop = isset($field['value']['loop']) ? 'checked' : '';
+
+		$video = isset($field['value']['video']) ? $field['value']['video'] : '';
+		$poster = isset($field['value']['poster']) ? $field['value']['poster'] : '';
+
+		// Renderowanie pól z przyciskami dla selektora mediów
+		echo '<div class="acf-field-ulepszony-video-url">';
+		echo '<label for="video">Video URL</label>';
+		$name_field = esc_attr($field['name']);
+		$name_field = preg_replace('/\[.*?\]/', '', $name_field);
+		// echo '<video id="video-' . $name_field . '" src="' . esc_url($video) . '" poster="' . esc_url($poster) . '" controls></video>';
+		echo '<input type="text" id="' . $name_field . '" name="' . esc_attr($field['name']) . '[video]" value="' . esc_attr($video) . '" />';
+		echo '<button type="button" class="button select-media" data-input-id="' . $name_field . '">Wybierz video</button>';
+		echo '</div>';
+
+		echo '<div class="acf-field-ulepszony-video-poster">';
+		echo '<label for="poster">Poster Image URL</label>';
+		echo '<input type="text" id="' . esc_attr($field['name']) . '_poster" name="' . esc_attr($field['name']) . '[poster]" value="' . esc_attr($poster) . '" />';
+		echo '<button type="button" class="button select-media" data-input-id="' . esc_attr($field['name']) . '[poster]">Wybierz obraz</button>';
+		echo '</div>';
+
+
+		// Renderowanie checkboxów
+		echo '<div class="acf-field-ulepszony-video-checkboxes">';
+		echo '<label><input type="checkbox" name="' . esc_attr($field['name']) . '[autoplay]" ' . $autoplay . '> Autoplay</label>';
+		echo '<label><input type="checkbox" name="' . esc_attr($field['name']) . '[muted]" ' . $muted . '> Muted</label>';
+		echo '<label><input type="checkbox" name="' . esc_attr($field['name']) . '[controls]" ' . $controls . '> Controls</label>';
+		echo '<label><input type="checkbox" name="' . esc_attr($field['name']) . '[loop]" ' . $loop . '> Loop</label>';
+		echo '</div>';
+	}
+
+	function load_value($value, $post_id, $field)
+	{
+		// Można tutaj dodać logikę przetwarzania wartości podczas ładowania
+		return $value;
+	}
+
+	function update_value($value, $post_id, $field)
+	{
+		// Można tutaj dodać logikę przetwarzania wartości podczas zapisywania
+		return $value;
+	}
+
+	function format_value($value, $post_id, $field)
+	{
+		// Formatowanie wartości na potrzeby wyświetlenia na froncie
+		if (empty($value) || !is_array($value) || !isset($value['video'])) {
+			return '';
+		}
+
+		$video_attributes = [];
+		if ($value['autoplay']) $video_attributes[] = 'autoplay playsinline';
+		if ($value['muted']) $video_attributes[] = 'muted';
+		if ($value['controls']) $video_attributes[] = 'controls';
+		if ($value['loop']) $video_attributes[] = 'loop';
+
+		$attributes_str = implode(' ', $video_attributes);
+
+		$html = '<video src="' . esc_url($value['video']) . '" poster="' . esc_url($value['poster']) . '" ' . $attributes_str . '></video>';
+		return $html;
+	}
+}
+
+function register_acf_field_ulepszony_video()
+{
+	new acf_field_ulepszony_video();
+}
+
+add_action('acf/include_field_types', 'register_acf_field_ulepszony_video');
+
+
+function input_admin_footer()
+{
+?>
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$('body').on('click', '.select-media', function(e) {
+				e.preventDefault();
+
+				var button = $(this);
+				var custom_uploader = wp.media({
+					title: 'Wybierz media',
+					library: {
+						type: button.attr('data-media-type') // 'image' dla obrazów, 'video' dla filmów; możesz usunąć ten wiersz, aby zezwolić na wszystkie typy mediów
+					},
+					button: {
+						text: 'Użyj tego media' // Tekst przycisku potwierdzającego wybór mediów
+					},
+					multiple: false // Pozwala na wybranie tylko jednego media
+				}).on('select', function() {
+					var attachment = custom_uploader.state().get('selection').first().toJSON();
+					button_id = "#" + button[0].getAttribute('data-input-id');
+					document.querySelector(button_id).value = attachment.url;
+				}).open();
+			});
+		});
+	</script>
+<?php
+}
+add_action('admin_footer', 'input_admin_footer');
+
+
+
+
+
+
+
 class acf_field_ulepszony_naglowek extends acf_field
 {
 
@@ -56,9 +187,7 @@ class acf_field_ulepszony_naglowek extends acf_field
 	}
 }
 
-add_action('acf/include_field_types', function () {
-	new acf_field_ulepszony_naglowek();
-});
+
 
 class My_Custom_ACF_Field extends acf_field
 {
