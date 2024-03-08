@@ -125,11 +125,6 @@ function input_admin_footer()
 add_action('admin_footer', 'input_admin_footer');
 
 
-
-
-
-
-
 class acf_field_ulepszony_naglowek extends acf_field
 {
 
@@ -186,6 +181,12 @@ class acf_field_ulepszony_naglowek extends acf_field
 		return $string;
 	}
 }
+
+
+add_action('acf/include_field_types', function () {
+	new acf_field_ulepszony_naglowek();
+});
+
 
 
 
