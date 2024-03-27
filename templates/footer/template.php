@@ -1,4 +1,20 @@
-<?php $options_fields = et_options_fields(); ?>
+<?php $options_fields = et_options_fields();
+if (!isset($options_fields['url_facebook'])) {
+  $options_fields['url_facebook'] = '';
+}
+if (!isset($options_fields['url_instagram'])) {
+  $options_fields['url_instagram'] = '';
+}
+if (!isset($options_fields['lista_telefonow'])) {
+  $options_fields['lista_telefonow'] = '';
+}
+if (!isset($options_fields['lista_maili'])) {
+  $options_fields['lista_maili'] = [];
+}
+if (!isset($options_fields['adres'])) {
+  $options_fields['adres'] = '';
+}
+?>
 
 <div class="et-container">
   <div class="single-footer">

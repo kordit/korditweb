@@ -5,7 +5,6 @@ header#header {
   top: 0;
   width: 100%;
   padding: 16px 0;
-  mix-blend-mode: difference;
 
   @media (max-width: 991px) {
     padding: 24px 0;
@@ -25,7 +24,6 @@ header#header {
     svg {
       width: 160px;
       height: auto;
-      filter: invert(1);
     }
 
   }
